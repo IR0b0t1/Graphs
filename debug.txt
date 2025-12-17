@@ -1,0 +1,1 @@
+register.php: New user registered successfully.
