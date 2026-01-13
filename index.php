@@ -27,10 +27,10 @@ class Day {
     public $isIllness;
 
     function set_day($day) {
-        $this->id = $day;
+        $this->day = $day;
     }
     function get_day() {
-        return $this->id;
+        return $this->day;
     }
 
     function set_temperature($temperature) {
@@ -55,22 +55,27 @@ class Day {
     }
 }
 
-$dataQuery = `
+$dataQuery = "
     SELECT
-        ID, Day, Temperature, isDone, isIllness
+        Temperature.ID, Temperature.Day, Temperature.Temperature,
+        Temperature.isDone, Temperature.isIllness
     FROM Temperature
-    LEFT JOIN Graphs ON Graphs.ID = Temperature.GraphID
+    INNER JOIN Graphs ON Graphs.ID = Temperature.GraphID
     WHERE Graphs.ID = :id AND Graphs.UserID = :userID
-    ORDER BY Temperature.ID ASC
-`
+    ORDER BY Temperature.Day ASC
+";
+
+$graphID = isset($_SESSION['id']) ? (int)$_SESSION['id'] : 1;
+$userID  = isset($_SESSION['userID']) ? (int)$_SESSION['userID'] : 1;
 $dataStmt = $dbh->prepare($dataQuery);
-$dataStmt->bindParam(':id', $_SESSION['id'], PDO::PARAM_INT);
-$dataStmt->bindParam(':userID', $_SESSION['userID'], PDO::PARAM_INT);
+$dataStmt->bindParam(':id', $graphID, PDO::PARAM_INT);
+$dataStmt->bindParam(':userID', $userID, PDO::PARAM_INT);
 $dataStmt->execute();
 $serverData = $dataStmt->fetchAll(PDO::FETCH_ASSOC);
 
 for($i=0;$i<$days;$i++) {
     if($i<count($serverData)) {
+        // echo "exists<br>";
         $databaseData = new Day();
         $databaseData->set_day($serverData[$i]['Day']);
         $databaseData->set_temperature($serverData[$i]['Temperature']);
@@ -78,6 +83,7 @@ for($i=0;$i<$days;$i++) {
         $databaseData->set_isIllness($serverData[$i]['isIllness']);
         $data[] = $databaseData;
     } else {
+        // echo "don't exists<br>";
         $databaseData = new Day();
         $databaseData->set_day($i+1);
         $databaseData->set_temperature(36);
@@ -91,12 +97,15 @@ function calculateX($days, $margin, $width, $day) {
     return $margin + (($width - 2 * $margin)/$days)*$day;
 }
 
-function calculateY($margin, $height, $temperature, $isIllness, $isDone) {
-    if($isDone == false || $isIllness == true){
-        return $height - $margin;
-    } else {
-        return $height - ($margin + (($height - 2 * $margin) * ($temperature - 36.0)));
-    }
+function calculateY($margin, $height, $temperature, $isIllness, $isDone) { 
+    if($isDone == false || $isIllness == true){ 
+        // echo "Y: ".$height - $margin." ";
+        return $height - $margin; 
+        } 
+    else { 
+        // echo $height - ($margin + (($height - 2 * $margin) * ($temperature - 36.0)));
+        return $height - ($margin + (($height - 2 * $margin) * ($temperature - 36.0))); 
+        } 
 }
 
 // niesamowity generator markerów
@@ -108,6 +117,7 @@ function generateMarkers($im, $data) {
         $markerTemperature = $data[$j]->get_temperature();
         $markerIsIllness = $data[$j]->get_isIllness();
         $markerIsDone = $data[$j]->get_isDone();
+        // echo "<br>".$markerID.", Temp: ".$markerTemperature.", Ill: ".$markerIsIllness.", Done: ".$markerIsDone." ";
         $x = calculateX($days, $margin, $width, $markerID);
         $y = calculateY($margin, $height, $markerTemperature, $markerIsIllness, $markerIsDone);
         $color = imagecolorallocate($im, 0, 0, 255);
@@ -161,13 +171,13 @@ $bk = imagecolorallocate($im, 0, 0, 0);
 $grayLine = [$gray, $gray, $gray, $white, $white, $white];
 $redLine = [$red, $white];
 imagefilledrectangle($im, 0, 0, $width, $height, $white);
-imagestringup($im, 7, 25, $height/2, "Temperatura", $bk);
-imagestring($im, 7, $width/2-50, $height-75, "Dzien pomiaru", $bk);
+imagestringup($im, 5, 25, $height/2, "Temperatura", $bk);
+imagestring($im, 5, $width/2-50, $height-75, "Dzien pomiaru", $bk);
 
 for ($x = $height-$margin; $x >= $margin; $x-=$lineMarginsHorizontal) {
     imagesetstyle($im, $grayLine);
     imageline($im, 100, $x, $width-100, $x, IMG_COLOR_STYLED);
-    imagestring($im, 10, 50, $x-10, $temp, $bk);
+    imagestring($im, 5, 50, $x-10, $temp, $bk);
     $temp += .2;
 }
 
@@ -178,7 +188,7 @@ for ($y = $width-$margin; $y >= $margin; $y-=$lineMarginsVertical) {
 }
 
 for ($z = $days; $z>=1; $z--){
-    imagestring($im, 10, $place, $height-90, $z, $bk);
+    imagestring($im, 5, $place, $height-90, $z, $bk);
     $place -= $lineMarginsVertical;
 }
 generateMarkers($im, $data);

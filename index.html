@@ -68,9 +68,9 @@
             console.log("Deleting inner HTML in container");
             document.getElementById('container').innerHTML = '';
             console.log("Adding image to container");
-            document.getElementById('container').innerHTML = '<img src="index.php?width=1000&height=600&margin=100&days=20&t='+ Math.random() +' alt="Temperatura" usemap="#graphmap">';
+            document.getElementById('container').innerHTML = '<img src="index.php?width=1000&height=600&margin=100&days=20&t=' + Math.random() + ' alt="Temperatura" usemap="#graphmap">';
             console.log("Fetching image map data");
-            await fetch('getdata.php?width=1000&height=600&margin=100')
+            await fetch('getdata.php?width=1000&height=600&margin=100&days=20')
                 .then(response => response.text())
                 .then(data => {
                     document.getElementById('container').innerHTML += data;
@@ -117,7 +117,7 @@
         const no_data_button = document.createElement('button');
         no_data_button.className = 'form-button';
         no_data_button.innerText = 'Brak pomiaru';
-        
+
         save_button.addEventListener('click', (e) => {
             e.preventDefault();
             updateData(day, temperature_input.value, false, true);

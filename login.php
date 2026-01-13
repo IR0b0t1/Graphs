@@ -1,26 +1,30 @@
 <?php
 include("cfg.php");
-$c=$dbh->exec("set names utf8");
-$myfile = fopen("debug.txt", "w") or die("Unable to open file!");
-$email = $_POST['email'];
-$password = $_POST['password'];
-$data = $dbh->query("SELECT COUNT(ID) FROM Users WHERE Login='$email'");
-$emailRegex = '/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/';
-if(preg_match($emailRegex, $email) === 0){
-    fwrite($myfile, "Invalid email format.");
-    exit;
+session_start();
+
+if (!isset($_POST['emaillogin'], $_POST['passwordlogin'])) {
+    die('Missing credentials');
 }
-if($data->fetchColumn()>0){
-    fwrite($myfile, "This email is already registered.");
-    exit;
-} else {
-    $passwordRegex = '/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/';
-    if(preg_match($passwordRegex, $password) === 0){
-        fwrite($myfile, "Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one digit.");
-        exit;
-    }
-    $c=$dbh->exec("INSERT INTO Users (Login, Password) VALUES ('$email', '$password')");
-    fwrite($myfile, "New user registered successfully.");
+
+$email = trim($_POST['emaillogin']);
+$password = $_POST['passwordlogin'];
+$log = fopen("debug.txt", "a");
+
+$sql = "SELECT ID, Password FROM Users WHERE Login = :email LIMIT 1";
+$stmt = $dbh->prepare($sql);
+$stmt->bindParam(':email', $email, PDO::PARAM_STR);
+$stmt->execute();
+
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$user || !password_verify($password, $user['Password'])) {
+    fwrite($log, "\nInvalid email or password");
+    die('Invalid email or password');
 }
+
+$_SESSION['userID'] = (int)$user['ID'];
+session_regenerate_id(true);
+fwrite($log, "\nUser logged successfully: $email");
+
 header("Location: login.html");
-?>
+exit;

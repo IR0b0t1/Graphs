@@ -1,8 +1,8 @@
 <?php
-$dbname = "if0_39854076_wykresy_database";
-$host = "sql300.infinityfree.com";
-$user = "if0_39854076";
-$password = "aOmeALk8AojScv";
+$dbname = "temperature";
+$host = "localhost";
+$user = "root";
+$password = "";
 $dns = "mysql:dbname=$dbname;host=$host";
 $dbh = new PDO($dns, $user, $password);
 ?>

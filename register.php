@@ -1,33 +1,51 @@
 <?php
 include("cfg.php");
-$c=$dbh->exec("set names utf8");
 
-$myfile = fopen("debug.txt", "w") or die("Unable to open file!");
+if (!isset($_POST['emailregister'], $_POST['passwordregister'])) {
+    die('Missing registration data');
+}
 
-$email = $_POST['email'];
-$password = $_POST['password'];
+$email = trim($_POST['emailregister']);
+$password = $_POST['passwordregister'];
 
-$data = $dbh->query("SELECT COUNT(ID) FROM Users WHERE Login='$email'");
+$log = fopen("debug.txt", "a");
 
 $emailRegex = '/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/';
-if(preg_match($emailRegex, $email) === 0){
-    fwrite($myfile, "register.php: Invalid email format.");
+if (!preg_match($emailRegex, $email)) {
+    fwrite($log, "\nInvalid email format");
+    fclose($log);
     exit;
 }
-if($data->fetchColumn()>0){
-    fwrite($myfile, "register.php: This email is already registered.");
-    exit;
-} else {
-    $passwordRegex = '/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/';
 
-    if(preg_match($passwordRegex, $password) === 0){
-        fwrite($myfile, "register.php: Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one digit.");
-        exit;
-    }
-    $passwordHash = password_hash($password, PASSWORD_BCRYPT);
-    $c=$dbh->exec("INSERT INTO Users (Login, Password) VALUES ('$email', '$passwordHash')");
-    fwrite($myfile, "register.php: New user registered successfully.");
+$passwordRegex = '/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/';
+if (!preg_match($passwordRegex, $password)) {
+    fwrite($log, "\nWeak password");
+    fclose($log);
+    exit;
 }
+
+$sql = "SELECT COUNT(*) FROM Users WHERE Login = :email";
+$stmt = $dbh->prepare($sql);
+$stmt->execute([':email' => $email]);
+
+if ($stmt->fetchColumn() > 0) {
+    fwrite($log, "\nEmail already registered");
+    fclose($log);
+    exit;
+}
+
+$passwordHash = password_hash($password, PASSWORD_DEFAULT);
+
+$sql = "INSERT INTO Users (Login, Password) VALUES (:email, :pass)";
+$stmt = $dbh->prepare($sql);
+$stmt->execute([
+    ':email' => $email,
+    ':pass'  => $passwordHash
+]);
+
+fwrite($log, "\nUser registered successfully: $email");
+fclose($log);
 
 header("Location: login.html");
+exit;
 ?>

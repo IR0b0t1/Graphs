@@ -1,1 +1,5 @@
 register.php: New user registered successfully.
+register.php: New user registered successfully.
+Login.php: This email is already registered.
+User registered successfully: bboner@egzorcysta.pl
+User logged successfully: bboner@egzorcysta.pl

@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rejestracja</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
-        *{
+
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -23,11 +25,13 @@
             grid-template-rows: 25% auto 10%;
         }
 
-        nav, footer {
+        nav,
+        footer {
             background: #202020;
         }
 
-        .logo-box, .logo {
+        .logo-box,
+        .logo {
             width: 100%;
             height: 200px;
             position: relative;
@@ -62,7 +66,8 @@
             height: 80px;
         }
 
-        .active, .inactive {
+        .active,
+        .inactive {
             border: none;
             font-size: 1.5rem;
             cursor: pointer;
@@ -145,7 +150,8 @@
             background-color: #F0F0F0;
         }
 
-        .login-button, .register-button {
+        .login-button,
+        .register-button {
             width: 120px;
             height: 35px;
             border: none;
@@ -155,7 +161,8 @@
             transition: background-color 0.3s, color 0.3s;
         }
 
-        .login-button:hover, .register-button:hover {
+        .login-button:hover,
+        .register-button:hover {
             background-color: #313131;
         }
 
@@ -166,9 +173,9 @@
         .password-forgot:hover {
             color: #111111
         }
-
     </style>
 </head>
+
 <body>
     <div class="container">
         <nav>
@@ -176,12 +183,13 @@
                 <div class="logo-box">
                     <img class="logo" src="gfx/logo.png" alt="Logo">
                     <script src="https://kit.fontawesome.com/fadd1db071.js" crossorigin="anonymous"></script>
-                    <button class="logo-login" onclick="loginPage()"><i class="fa-solid fa-gears"></i> Zaloguj się</button>
+                    <button class="logo-login" onclick="loginPage()"><i class="fa-solid fa-gears"></i> Zaloguj
+                        się</button>
                 </div>
                 <div class="navigation">
                     <button id="login-page-button" onclick="loginPage()">Zaloguj</button>
                     <button id="register-page-button" onclick="registerPage()">Utwórz konto</button>
-                </div>    
+                </div>
             </div>
             <p id="returnMessage"></p>
         </nav>
@@ -189,22 +197,22 @@
             <div class="flex-center">
                 <form method="POST" class="hidden" id="registerbox" action="register.php">
                     <img src="gfx/register.webp" alt="Rejestracja" class="form-image">
-                    <input type="email" name="email" placeholder="Email" required autocomplete="off">
-                    <input type="password" name="password" placeholder="Hasło" required autocomplete="off">
+                    <input type="email" name="emailregister" placeholder="Email" required autocomplete="off">
+                    <input type="password" name="passwordregister" placeholder="Hasło" required autocomplete="off">
                     <button class="register-button" type="submit" onclick="registerUser()">Zarejestruj mnie</button>
                 </form>
             </div>
             <div class="flex-center">
-                <form method="POST" class="formbox" id="loginbox">
+                <form method="POST" class="formbox" id="loginbox" action="login.php">
                     <img src="gfx/login.webp" alt="Logowanie" class="form-image">
-                    <input type="email" name="email" placeholder="Email" required autocomplete="off">
-                    <input type="password" name="password" placeholder="Hasło" required autocomplete="off">
+                    <input type="email" name="emaillogin" placeholder="Email" required autocomplete="off">
+                    <input type="password" name="passwordlogin" placeholder="Hasło" required autocomplete="off">
                     <div class="button-box">
                         <button class="login-button" type="submit" onclick="loginUser()">Zaloguj</button>
                         <a href="#" class="password-forgot">Zapomniałem hasła</a>
                     </div>
                 </form>
-            </div>    
+            </div>
         </div>
         <footer>
             <p>Copyright &#169; 2025 by Filip L</p>
@@ -215,7 +223,7 @@
         const loginPage = () => {
             console.log("loginPage changed");
             document.getElementById('loginbox').className = 'formbox';
-            document.getElementById('registerbox').className = 'hidden'; 
+            document.getElementById('registerbox').className = 'hidden';
             document.getElementById('login-page-button').className = 'active';
             document.getElementById('register-page-button').className = 'inactive';
         };
@@ -231,4 +239,5 @@
         loginPage();
     </script>
 </body>
+
 </html>

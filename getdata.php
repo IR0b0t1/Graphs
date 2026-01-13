@@ -1,33 +1,74 @@
 <?php
 include("cfg.php");
+session_start();
 
-$c=$dbh->exec("set names utf8");
-$data = array();
+$width  = (int)$_GET['width'];
+$height = (int)$_GET['height'];
+$margin = (int)$_GET['margin'];
+$days   = (int)$_GET['days'];
 
-$sth= $dbh->query("select * from Temperature");
-$serverData=$sth->fetchAll();
+$sql = "
+    SELECT
+        Temperature.ID,
+        Temperature.Day,
+        Temperature.Temperature,
+        Temperature.isDone,
+        Temperature.isIllness
+    FROM Temperature
+    INNER JOIN Graphs ON Graphs.ID = Temperature.GraphID
+    WHERE Graphs.ID = :id
+      AND Graphs.UserID = :userID
+    ORDER BY Temperature.Day ASC
+";
 
-$width = $_GET['width'];
-$height = $_GET['height'];
-$margin = $_GET['margin'];
-$days = count($serverData);
+
+$graphID = isset($_SESSION['id']) ? (int)$_SESSION['id'] : 1;
+$userID  = isset($_SESSION['userID']) ? (int)$_SESSION['userID'] : 1;
+$stmt = $dbh->prepare($sql);
+$stmt->bindParam(':id', $graphID, PDO::PARAM_INT);
+$stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+$stmt->execute();
+$serverData = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 function calculateX($days, $margin, $width, $day) {
-    return $margin + (($width - 2 * $margin)/$days)*$day;
+    return (int)($margin + (($width - 2 * $margin) / $days) * $day);
 }
 
-function calculateY($margin, $height, $temperature, $isIllness, $isDone) {
-    if($isDone == false || $isIllness == true || $temperature == 36){
-        return $height - $margin;
-    } else {
-        return $height - ($margin + (($height - 2 * $margin) * ($temperature - 36.0)));
-    }
+function calculateY($margin, $height, $temperature, $isIllness, $isDone) { 
+    if($isDone == false || $isIllness == true){ 
+        return $height - $margin; 
+        } 
+    else { 
+        return $height - ($margin + (($height - 2 * $margin) * ($temperature - 36.0))); 
+        } 
 }
+
 echo "<map name='graphmap'>\n";
-for($i=0;$i<count($serverData);$i++) {
-    $x = calculateX($days, $margin, $width, $serverData[$i]['Day']);
-    $y = calculateY($margin, $height, $serverData[$i]['Temperature'], $serverData[$i]['isIllness'], $serverData[$i]['isDone']);
-    echo "<area shape='circle' coords=" . $x . "," . $y . ",5 alt='graphPoint' onclick='nodeClicked(" . $serverData[$i]['Day'] . ", " . $serverData[$i]['Temperature'] . ", " . $serverData[$i]['isIllness'] . ", " . $serverData[$i]['isDone'] . ", " . $serverData[$i]['ID'] . ")' class='clicker'>\n";
+
+foreach ($serverData as $row) {
+
+    $x = calculateX($days, $margin, $width, $row['Day']);
+    $y = calculateY(
+        $margin,
+        $height,
+        $row['Temperature'],
+        $row['isIllness'],
+        $row['isDone']
+    );
+
+    echo "<area
+        shape='circle'
+        coords='{$x},{$y},5'
+        alt='graphPoint'
+        class='clicker'
+        onclick='nodeClicked(
+            {$row['Day']},
+            {$row['Temperature']},
+            {$row['isIllness']},
+            {$row['isDone']},
+            {$row['ID']}
+        )'
+    >\n";
 }
+
 echo "</map>";
-?>
