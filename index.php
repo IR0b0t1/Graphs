@@ -32,9 +32,10 @@ $c = $dbh->exec("set names utf8");
                             $stmt->execute();
                             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             $row = $result[0];
+                            $login = explode('@', $row['login'])[0];
                             echo "
                             <form action='php/signout.php'>
-                                <button class='logo-login'><!--<i class='fa-solid fa-gears'></i>--> {$row['login']}</button>
+                                <button class='logo-login'><!--<i class='fa-solid fa-gears'></i>--> {$login}</button>
                             </form>
                             ";
                         }
@@ -112,14 +113,16 @@ $c = $dbh->exec("set names utf8");
 
         // Fetch grafu
         const getData = async () => {
-            if(document.getElementById('container')) {
+            if(document.getElementById('container')) {        
                 console.log('Deleting inner HTML in container');
                 document.getElementById('container').innerHTML = '';
+                document.getElementById('container').innerHTML += "<button onclick='newRecordDialog()' class='add-button'>Dodaj pomiar</button>";
+                document.getElementById('container').innerHTML += "<form action='php/newgraph.php' method='POST'><button type='submit' class='add-button'>Dodaj nowy wykres</button></form>";
                 console.log('Adding image to container');
                 console.log(window.innerHeight)
-                document.getElementById('container').innerHTML = `<img src='php/graph.php?width=1000&height=${window.innerHeight - 245}&margin=100&days=20&t=' + Math.random() + ' alt='Temperatura' usemap='#graphmap'>`;
+                document.getElementById('container').innerHTML += `<img src='php/graph.php?width=1000&height=${window.innerHeight - 300}&margin=100&days=20&t=' + Math.random() + ' alt='Temperatura' usemap='#graphmap'>`;
                 console.log('Fetching image map data');
-                await fetch(`php/getdata.php?width=1000&height=${window.innerHeight - 245}&margin=100&days=20`)
+                await fetch(`php/getdata.php?width=1000&height=${window.innerHeight - 300}&margin=100&days=20`)
                     .then(response => response.text())
                     .then(data => {
                         document.getElementById('container').innerHTML += data;
