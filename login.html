@@ -4,185 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="stylesheet/main.css" rel="stylesheet">
     <title>Rejestracja</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Raleway", sans-serif;
-        }
-
-        body {
-            height: 100vh;
-        }
-
-        .container {
-            min-height: 100vh;
-            display: grid;
-            grid-template-rows: auto 1fr auto;
-        }
-
-        nav,
-        footer {
-            background: #202020;
-        }
-
-        .logo-box,
-        .logo {
-            width: 100%;
-            height: 200px;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        .logo {
-            width: 90%;
-            object-fit: cover;
-            opacity: 70%;
-            position: relative;
-            z-index: 1;
-        }
-
-
-        .logo-login {
-            position: absolute;
-            top: 10%;
-            right: 10%;
-            transition: all 0.3s;
-        }
-
-        .navigation {
-            display: flex;
-            justify-content: center;
-            width: 80%;
-            margin: 0 auto;
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80%;
-            z-index: 2;
-        }
-
-        .navigation button {
-            width: 100%;
-            height: 80px;
-        }
-
-        .active,
-        .inactive {
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        .active {
-            background-color: #F0F0F0;
-            color: #313131;
-        }
-
-        .active:hover {
-            background-color: #ddd;
-        }
-
-        .inactive {
-            background-color: #252525;
-            color: #F0F0F0;
-        }
-
-        .inactive:hover {
-            background-color: #383838;
-        }
-
-        .formbox {
-            display: flex;
-            flex-direction: column;
-            width: 350px;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .flex-center {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .form-image {
-            width: 150px;
-            height: 150px;
-            object-fit: scale-down;
-            margin-bottom: 20px;
-            border-radius: 50%;
-            border: 1px solid #ccc;
-            background-image: radial-gradient(circle, blue, cyan);
-        }
-
-        footer {
-            display: flex;
-            justify-content: end;
-            color: #F0F0F0;
-            padding: 10px;
-            align-items: center;
-        }
-
-        input {
-            width: 100%;
-            padding: 10px;
-        }
-
-        .button-box {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: 10px;
-            justify-content: space-between;
-            width: 100%;
-        }
-
-        .content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #F0F0F0;
-        }
-
-        .login-button,
-        .register-button {
-            width: 120px;
-            height: 35px;
-            border: none;
-            background-color: #202020;
-            color: #F0F0F0;
-            cursor: pointer;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        .login-button:hover,
-        .register-button:hover {
-            background-color: #313131;
-        }
-
-        .password-forgot {
-            color: #414141;
-        }
-
-        .password-forgot:hover {
-            color: #111111
-        }
-    </style>
 </head>
 
 <body>
@@ -204,7 +27,7 @@
         </nav>
         <div class="content">
             <div class="flex-center">
-                <form method="POST" class="hidden" id="registerbox" action="register.php">
+                <form method="POST" class="hidden" id="registerbox" action="php/register.php">
                     <img src="gfx/register.webp" alt="Rejestracja" class="form-image">
                     <input type="email" name="emailregister" placeholder="Email" required autocomplete="off">
                     <input type="password" name="passwordregister" placeholder="Hasło" required autocomplete="off">
@@ -212,7 +35,7 @@
                 </form>
             </div>
             <div class="flex-center">
-                <form method="POST" class="formbox" id="loginbox" action="login.php">
+                <form method="POST" class="formbox" id="loginbox" action="php/login.php">
                     <img src="gfx/login.webp" alt="Logowanie" class="form-image">
                     <input type="email" name="emaillogin" placeholder="Email" required autocomplete="off">
                     <input type="password" name="passwordlogin" placeholder="Hasło" required autocomplete="off">

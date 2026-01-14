@@ -17,9 +17,9 @@
             console.log("Deleting inner HTML in container");
             document.getElementById('container').innerHTML = '';
             console.log("Adding image to container");
-            document.getElementById('container').innerHTML = '<img src="index.php?width=1000&height=600&margin=100&days=20&t=' + Math.random() + ' alt="Temperatura" usemap="#graphmap">';
+            document.getElementById('container').innerHTML = '<img src="php/index.php?width=1000&height=600&margin=100&days=20&t=' + Math.random() + ' alt="Temperatura" usemap="#graphmap">';
             console.log("Fetching image map data");
-            await fetch('getdata.php?width=1000&height=600&margin=100&days=20')
+            await fetch('php/getdata.php?width=1000&height=600&margin=100&days=20')
                 .then(response => response.text())
                 .then(data => {
                     document.getElementById('container').innerHTML += data;
@@ -29,7 +29,7 @@
         };
 
         async function updateData(day, temperature, is_illness, is_done) {
-            await fetch(`postdata.php?day=${day}&temperature=${temperature}&isIllness=${is_illness}&isDone=${is_done}`);
+            await fetch(`php/postdata.php?day=${day}&temperature=${temperature}&isIllness=${is_illness}&isDone=${is_done}`);
         }
 
         var day = 0;
