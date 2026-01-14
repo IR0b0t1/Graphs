@@ -6,5 +6,13 @@ window.registerPage = registerPage;
 window.nodeClicked = nodeClicked;
 
 document.addEventListener('DOMContentLoaded', () => {
-    getData();
+    const container = document.getElementById('container');
+
+    if (!container) {
+        console.log('login page');
+        loginPage();
+    } else {
+        console.log('graph page');
+        getData();
+    }
 });

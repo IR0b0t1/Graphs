@@ -57,21 +57,25 @@ $c = $dbh->exec("set names utf8");
         </nav>
         <div class='content'>
             <div class='flex-center'>
-                <form method='POST' <?php
+                <form method='POST' class='<?php
                     if(isset($_SESSION['userID'])) {
-                        echo "class='hidden'";
+                        echo "hidden";
+                    } else {
+                        echo "hidden";
                     }
-                ?> id='registerbox' action='php/registeruser.php'>
+                ?>' id='registerbox' action='php/registeruser.php'>
                     <img src='gfx/register.webp' alt='Rejestracja' class='form-image'>
                     <input type='email' name='emailregister' placeholder='Email' required autocomplete='off'>
                     <input type='password' name='passwordregister' placeholder='Hasło' required autocomplete='off'>
                     <button class='register-button' type='submit' onclick='registerUser()'>Zarejestruj mnie</button>
                 </form>
-                <form method='POST' <?php
+                <form method='POST' class='<?php
                     if(isset($_SESSION['userID'])) {
-                        echo "class='hidden'";
+                        echo "hidden";
+                    } else {
+                        echo "formbox";
                     }
-                ?> id='loginbox' action='php/loginuser.php'>
+                ?>' id='loginbox' action='php/loginuser.php'>
                     <img src='gfx/login.webp' alt='Logowanie' class='form-image'>
                     <input type='email' name='emaillogin' placeholder='Email' required autocomplete='off'>
                     <input type='password' name='passwordlogin' placeholder='Hasło' required autocomplete='off'>
@@ -94,14 +98,6 @@ $c = $dbh->exec("set names utf8");
             <p>Copyright &#169; 2025 by Filip L</p>
         </footer>
     </div>
-    <?php
-    if(!isset($_SESSION['userID'])) { 
-        echo "
-        <script>
-            loginPage();
-        </script>";
-    }
-    ?>
 </body>
 
 </html>
