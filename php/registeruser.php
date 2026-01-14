@@ -46,6 +46,6 @@ $stmt->execute([
 fwrite($log, "\nUser registered successfully: $email");
 fclose($log);
 
-header("Location: login.html");
+header("Location: ../index.php");
 exit;
 ?>

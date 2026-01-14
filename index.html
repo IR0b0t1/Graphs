@@ -17,7 +17,7 @@
             console.log("Deleting inner HTML in container");
             document.getElementById('container').innerHTML = '';
             console.log("Adding image to container");
-            document.getElementById('container').innerHTML = '<img src="php/index.php?width=1000&height=600&margin=100&days=20&t=' + Math.random() + ' alt="Temperatura" usemap="#graphmap">';
+            document.getElementById('container').innerHTML = '<img src="php/graph.php?width=1000&height=600&margin=100&days=20&t=' + Math.random() + ' alt="Temperatura" usemap="#graphmap">';
             console.log("Fetching image map data");
             await fetch('php/getdata.php?width=1000&height=600&margin=100&days=20')
                 .then(response => response.text())

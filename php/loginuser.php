@@ -26,5 +26,5 @@ $_SESSION['userID'] = (int)$user['ID'];
 session_regenerate_id(true);
 fwrite($log, "\nUser logged successfully: $email");
 
-header("Location: login.html");
+header("Location: ../index.php");
 exit;
