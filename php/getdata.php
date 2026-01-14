@@ -46,7 +46,6 @@ function calculateY($margin, $height, $temperature, $isIllness, $isDone) {
 echo "<map name='graphmap'>\n";
 
 foreach ($serverData as $row) {
-
     $x = calculateX($days, $margin, $width, $row['Day']);
     $y = calculateY(
         $margin,

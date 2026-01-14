@@ -1,5 +1,7 @@
 <?php
+include('php/cfg.php');
 session_start();
+$c = $dbh->exec("set names utf8");
 ?>
 <!DOCTYPE html>
 <html lang='en'>
@@ -12,10 +14,6 @@ session_start();
 </head>
 
 <body>
-    <script>
-        document.cookie = "viewport_width=" + window.innerWidth + "; path=/";
-        document.cookie = "height=" + window.innerHeight + "; path=/";
-    </script>
     <div class='container'>
         <nav>
             <div>
@@ -28,9 +26,15 @@ session_start();
                                 <button class='logo-login' onclick='loginPage()'><!--<i class='fa-solid fa-gears'></i>--> Zaloguj się</button>
                             ";
                         } else {
+                            $query = 'SELECT login FROM users WHERE ID = :id';
+                            $stmt = $dbh->prepare($query);
+                            $stmt->bindParam(':id', $_SESSION['userID'], PDO::PARAM_INT);
+                            $stmt->execute();
+                            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                            $row = $result[0];
                             echo "
                             <form action='php/signout.php'>
-                                <button class='logo-login'><!--<i class='fa-solid fa-gears'></i>--> Wyloguj się</button>
+                                <button class='logo-login'><!--<i class='fa-solid fa-gears'></i>--> {$row['login']}</button>
                             </form>
                             ";
                         }
@@ -108,19 +112,23 @@ session_start();
 
         // Fetch grafu
         const getData = async () => {
-            console.log("Deleting inner HTML in container");
-            document.getElementById('container').innerHTML = '';
-            console.log("Adding image to container");
-            console.log(window.innerHeight)
-            document.getElementById('container').innerHTML = `<img src="php/graph.php?width=1000&height=${window.innerHeight - 245}&margin=100&days=20&t=' + Math.random() + ' alt="Temperatura" usemap="#graphmap">`;
-            console.log("Fetching image map data");
-            await fetch(`php/getdata.php?width=1000&height=${window.innerHeight - 245}&margin=100&days=20`)
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('container').innerHTML += data;
-                })
-                .catch(error => console.error('Error fetching data:', error));
-            console.log("Fetching data complete");
+            if(document.getElementById('container')) {
+                console.log('Deleting inner HTML in container');
+                document.getElementById('container').innerHTML = '';
+                console.log('Adding image to container');
+                console.log(window.innerHeight)
+                document.getElementById('container').innerHTML = `<img src='php/graph.php?width=1000&height=${window.innerHeight - 245}&margin=100&days=20&t=' + Math.random() + ' alt='Temperatura' usemap='#graphmap'>`;
+                console.log('Fetching image map data');
+                await fetch(`php/getdata.php?width=1000&height=${window.innerHeight - 245}&margin=100&days=20`)
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById('container').innerHTML += data;
+                    })
+                    .catch(error => console.error('Error fetching data:', error));
+                console.log('Fetching data complete');
+            } else {
+                console.log('User not registered, no container exists');
+            }
         };
 
         async function updateData(day, temperature, is_illness, is_done) {
@@ -188,7 +196,7 @@ session_start();
 
         const close_button = document.createElement('button');
         close_button.className = 'form-button';
-        close_button.innerText = "Zamknij";
+        close_button.innerText = 'Zamknij';
 
         edit_form.appendChild(day_label);
         edit_form.appendChild(temperature_input);
@@ -202,7 +210,7 @@ session_start();
         document.body.appendChild(dialog);
 
         const nodeClicked = (day, temperature, is_illness, is_done, id) => {
-            console.log("Click");
+            console.log('Click');
             day_label.innerText = `Dzień ${day}`;
             dialog.showModal();
 

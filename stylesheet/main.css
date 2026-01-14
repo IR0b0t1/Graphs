@@ -48,6 +48,10 @@ footer {
     cursor: pointer;
     transition: all 0.3s;
     z-index: 3;
+    padding: 8px 16px;
+    border-radius: 10px;
+    border: 1px solid dimgray;
+    color: #3A3A3A;
 }
 
 .navigation {
