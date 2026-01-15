@@ -11,7 +11,7 @@ $c = $dbh->exec("set names utf8");
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <link href='stylesheet/main.css' rel='stylesheet'>
     <script type="module" src="javascript/main.js"></script>
-    <title>Rejestracja</title>
+    <title>Graphs</title>
 </head>
 
 <body>
@@ -57,21 +57,25 @@ $c = $dbh->exec("set names utf8");
         </nav>
         <div class='content'>
             <div class='flex-center'>
-                <form method='POST' <?php
+                <form method='POST' class='<?php
                     if(isset($_SESSION['userID'])) {
-                        echo "class='hidden'";
+                        echo "hidden";
+                    } else {
+                        echo "hidden";
                     }
-                ?> id='registerbox' action='php/registeruser.php'>
+                ?>' id='registerbox' action='php/registeruser.php'>
                     <img src='gfx/register.webp' alt='Rejestracja' class='form-image'>
                     <input type='email' name='emailregister' placeholder='Email' required autocomplete='off'>
                     <input type='password' name='passwordregister' placeholder='Hasło' required autocomplete='off'>
                     <button class='register-button' type='submit' onclick='registerUser()'>Zarejestruj mnie</button>
                 </form>
-                <form method='POST' <?php
+                <form method='POST' class='<?php
                     if(isset($_SESSION['userID'])) {
-                        echo "class='hidden'";
+                        echo "hidden";
+                    } else {
+                        echo "formbox";
                     }
-                ?> id='loginbox' action='php/loginuser.php'>
+                ?>' id='loginbox' action='php/loginuser.php'>
                     <img src='gfx/login.webp' alt='Logowanie' class='form-image'>
                     <input type='email' name='emaillogin' placeholder='Email' required autocomplete='off'>
                     <input type='password' name='passwordlogin' placeholder='Hasło' required autocomplete='off'>
@@ -80,28 +84,48 @@ $c = $dbh->exec("set names utf8");
                         <a href='#' class='password-forgot'>Zapomniałem hasła</a>
                     </div>
                 </form>
-                <?php 
-                if(isset($_SESSION['userID'])) {
-                    echo "
-                        <div id='container'>
+                <div class='datagrid'<?php
+                    if(!isset($_SESSION['userID'])) {
+                        echo "style='display: none'";
+                    } 
+                ?> >
+                    <div style='display: flex; justify-content: space-around; margin: 10px;'>
+                        <button class='add-button' onclick='newRecordDialog()'>Dodaj pomiar</button>
+                        <div class='graph-nav'>
+                            <button class='graph-nav-button' onclick='previousGraph()'><</button>
+                            <span class='graph-nav-text' id='graph-nav-text'>Wykres 1</span>
+                            <button class='graph-nav-button' onclick='nextGraph()'>></button>
                         </div>
-                    ";
-                }
-                ?>
+                        <button class='add-button' onclick='newGraphDialog()()'>Dodaj nowy wykres</button>
+                    </div>
+                    <?php 
+                    if(isset($_SESSION['userID'])) {
+                        echo "
+                            <div id='container'>
+                            </div>
+                        ";
+                    }
+                    ?>
+                </div>
             </div>
         </div>
         <footer>
             <p>Copyright &#169; 2025 by Filip L</p>
         </footer>
     </div>
-    <?php
-    if(!isset($_SESSION['userID'])) { 
-        echo "
-        <script>
-            loginPage();
-        </script>";
-    }
-    ?>
+    <dialog id='addRecordDialog' class='dialog-window'>
+        <div class='form-container'>
+            <form method='post' action='php/addrecord.php' class='dialog-form'>
+                <h2>Dodaj nowy dzień</h2>
+                <label for='temperature-new'>Temperatura</label>
+                <input class='form-input' type='number' id='temperature-new' name='temperature-new'>
+                <button type='submit' class='form-button'>Dodaj nową temperaturę</button>
+                <button type='button' class='form-button'>Choroba</button>
+                <button type='button' class='form-button' onclick='addRecord()'>Brak pomiaru</button>
+                <button type='button' class='form-button' onclick='document.getElementById("addRecordDialog").close()'>Zamknij</button>
+            </form>
+        </div>
+    </dialog>
 </body>
 
 </html>

@@ -23,6 +23,17 @@ if (!$user || !password_verify($password, $user['Password'])) {
 }
 
 $_SESSION['userID'] = (int)$user['ID'];
+$sql = "SELECT COUNT(*) AS Graphs FROM Graphs WHERE UserID = :userID";
+$stmt = $dbh->prepare($sql);
+$stmt->bindParam(':userID', $user['ID'], PDO::PARAM_INT);
+$stmt->execute();
+
+$graphsCount = $stmt->fetch(PDO::FETCH_ASSOC);
+fwrite($log, "\nUser has ".$graphsCount['Graphs']." graphs");
+
+$_SESSION['graphCount'] = (int)$graphsCount['Graphs'];
+fwrite($log, "\nSession data - user ID: ".$_SESSION['userID'].", graphs amount: ".$_SESSION['graphCount']);
+
 session_regenerate_id(true);
 fwrite($log, "\nUser logged successfully: $email");
 

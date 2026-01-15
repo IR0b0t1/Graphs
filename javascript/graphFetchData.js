@@ -1,4 +1,4 @@
-export const getData = async () => {
+export const getData = async (graphID) => {
     const container = document.getElementById('container');
 
     if (!container) {
@@ -8,14 +8,6 @@ export const getData = async () => {
 
     console.log('Deleting inner HTML in container');
     container.innerHTML = '';
-
-    container.innerHTML +=
-        "<button onclick='newRecordDialog()' class='add-button'>Dodaj pomiar</button>";
-
-    container.innerHTML +=
-        "<form action='php/newgraph.php' method='POST'>" +
-        "<button type='submit' class='add-button'>Dodaj nowy wykres</button>" +
-        "</form>";
 
     const height = window.innerHeight - 300;
 
@@ -29,7 +21,7 @@ export const getData = async () => {
     console.log('Fetching image map data');
     try {
         const response = await fetch(
-            `php/getdata.php?width=1000&height=${height}&margin=100&days=20`
+            `php/getdata.php?width=1000&height=${height}&margin=100&graphID=${graphID}`
         );
         const data = await response.text();
         container.innerHTML += data;

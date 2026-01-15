@@ -33,10 +33,14 @@ const editForm = document.createElement('form');
 editForm.method = 'POST';
 editForm.className = 'dialog-form';
 
+const header = document.createElement('h2');
+header.innerText = 'Edytuj dzień';
+
 const dayLabel = document.createElement('label');
 
 const temperatureInput = document.createElement('input');
-temperatureInput.className = 'temperature-input';
+temperatureInput.className = 'form-input';
+temperatureInput.name = 'temperature-change';
 temperatureInput.type = 'number';
 temperatureInput.min = 36;
 temperatureInput.max = 37;
@@ -83,6 +87,7 @@ closeButton.className = 'form-button';
 closeButton.innerText = 'Zamknij';
 
 editForm.append(
+    header,
     dayLabel,
     temperatureInput,
     saveButton,

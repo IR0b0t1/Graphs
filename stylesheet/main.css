@@ -117,6 +117,10 @@ footer {
     background-image: radial-gradient(circle, blue, cyan);
 }
 
+h2 {
+    margin: 10px 0;
+}
+
 input {
     width: 100%;
     padding: 10px;
@@ -209,8 +213,41 @@ footer {
     border: 1px solid #39709a;
 }
 
-.temperature-input {
+.form-input {
     width: 200px;
     margin: 10px;
     padding: 5px;
+}
+
+.add-button {
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid #454545;
+    background: #232323;
+    color: #D3D3D3;
+    transition: 0.3s;
+    min-height: 36px;
+    min-height: 40px;
+}
+
+.add-button:hover {
+    background-color: #343434;
+}
+
+.graph-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.graph-nav-button,
+.graph-nav-text {
+    height: fit-content;
+    width: fit-content;
+    min-height: 40px;
+    padding: 8px 16px;
+    background: #e0e0e0;
+    border: 1px solid #d0d0d0;
+    color: #343434;
 }
