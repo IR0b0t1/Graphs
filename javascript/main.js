@@ -16,6 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
         loginPage();
     } else {
         console.log('graph page');
-        getData();
+        getData(1);
     }
 });

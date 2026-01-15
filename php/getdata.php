@@ -5,19 +5,25 @@ session_start();
 $width  = (int)$_GET['width'];
 $height = (int)$_GET['height'];
 $margin = (int)$_GET['margin'];
-$days   = (int)$_GET['days'];
+$graphID = 1;//(int)$_GET['graphID'];
 
 $sql = "
     SELECT COUNT(Day) AS Days FROM Temperature
     INNER JOIN Graphs ON Graphs.ID = Temperature.GraphID
     WHERE Graphs.ID = :id
       AND Graphs.UserID = :userID 
-"
+";
+
 $stmt = $dbh->prepare($sql);
-$stmt->bindParam(':id', $_SESSION['id'], PDO::PARAM_INT);
+$stmt->bindParam(':id', $graphID, PDO::PARAM_INT);
 $stmt->bindParam(':userID', $_SESSION['userID'], PDO::PARAM_INT);
 $stmt->execute();
-$serverData = $stmt->fetchAll(PDO::FETCH_ASSOC)
+$serverData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+foreach ($serverData as $row) {
+    $days = $row['Days'];
+    echo $days;
+}
 
 $sql = "
     SELECT
@@ -34,7 +40,7 @@ $sql = "
 ";
 
 $stmt = $dbh->prepare($sql);
-$stmt->bindParam(':id', $_SESSION['id'], PDO::PARAM_INT);
+$stmt->bindParam(':id', $graphID, PDO::PARAM_INT);
 $stmt->bindParam(':userID', $_SESSION['userID'], PDO::PARAM_INT);
 $stmt->execute();
 $serverData = $stmt->fetchAll(PDO::FETCH_ASSOC);

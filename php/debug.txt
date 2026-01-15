@@ -19,3 +19,13 @@ Invalid email or password
 User logged successfully: admin@gmail.com
 User logged successfully: admin@gmail.com
 User logged successfully: admin@gmail.com
+User logged successfully: admin@gmail.com
+User logged successfully: admin@gmail.com
+User logged successfully: bboner@egzorcysta.pl
+User logged successfully: admin@gmail.com
+User has 1 graphs
+Session data - user ID: 1, graphs amount: 1
+User logged successfully: admin@gmail.com
+User has 1 graphs
+Session data - user ID: 1, graphs amount: 1
+User logged successfully: admin@gmail.com

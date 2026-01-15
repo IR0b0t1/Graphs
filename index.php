@@ -84,8 +84,20 @@ $c = $dbh->exec("set names utf8");
                         <a href='#' class='password-forgot'>Zapomniałem hasła</a>
                     </div>
                 </form>
-                <div class='datagrid'>
-                    <button class='add-button' onclick='newRecordDialog()'>Dodaj pomiar</button>
+                <div class='datagrid'<?php
+                    if(!isset($_SESSION['userID'])) {
+                        echo "style='display: none'";
+                    } 
+                ?> >
+                    <div style='display: flex; justify-content: space-around; margin: 10px;'>
+                        <button class='add-button' onclick='newRecordDialog()'>Dodaj pomiar</button>
+                        <div class='graph-nav'>
+                            <button class='graph-nav-button' onclick='previousGraph()'><</button>
+                            <span class='graph-nav-text' id='graph-nav-text'>Wykres 1</span>
+                            <button class='graph-nav-button' onclick='nextGraph()'>></button>
+                        </div>
+                        <button class='add-button' onclick='newGraphDialog()()'>Dodaj nowy wykres</button>
+                    </div>
                     <?php 
                     if(isset($_SESSION['userID'])) {
                         echo "
