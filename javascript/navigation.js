@@ -115,3 +115,8 @@ export const nodeClicked = (
 
     dialog.showModal();
 };
+
+export const newRecordDialog = () => {
+    console.log('New Record Dialog');
+    document.getElementById('addRecordDialog').showModal();
+}

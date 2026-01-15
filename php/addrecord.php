@@ -1,9 +1,9 @@
 <?php
 include('cfg.php');
-$graphID = $_POST('graphID');
-$temperature = $_POST('temperature');
-$isIll = $_POST('isIll');
-$isDone = $_POST('isDone');
+$graphID = $_GET('graphID');
+$temperature = $_GET('temperature');
+$isIll = $_GET('isIll');
+$isDone = $_GET('isDone');
 
 $isIllness = $isIllness == 'true' ? 1 : 0;
 $isDone = $isDone == 'true' ? 1 : 0;
@@ -23,7 +23,7 @@ $query->execute([
 ]);
 
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-$day = $result[0];
+$day = $result[0] + 1;
 
 $stmt = $dbh->prepare("INSERT INTO temperature(`GraphID`, `Day`, `Temperature`, `isDone`, `isIllness`) 
 VALUES (NULL, :graphID, :day, :temperature, :isDone, :isIllness)");

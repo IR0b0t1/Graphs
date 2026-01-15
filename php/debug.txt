@@ -12,3 +12,9 @@ User logged successfully: bboner@egzorcysta.pl
 Invalid email or password
 User logged successfully: bboner@egzorcysta.pl
 User logged successfully: admin@gmail.com
+User logged successfully: admin@gmail.com
+User logged successfully: admin@gmail.com
+Invalid email or password
+Invalid email or password
+User logged successfully: admin@gmail.com
+User logged successfully: admin@gmail.com

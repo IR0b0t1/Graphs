@@ -11,7 +11,7 @@ $c = $dbh->exec("set names utf8");
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <link href='stylesheet/main.css' rel='stylesheet'>
     <script type="module" src="javascript/main.js"></script>
-    <title>Rejestracja</title>
+    <title>Graphs</title>
 </head>
 
 <body>
@@ -98,6 +98,13 @@ $c = $dbh->exec("set names utf8");
             <p>Copyright &#169; 2025 by Filip L</p>
         </footer>
     </div>
+    <dialog id='addRecordDialog' class='dialog-window'>
+        <form method='post' action='php/addrecord.php'>
+            <label for='temperature-new'>Nowy dzień</label>
+            <input type='number' id='temperature-new' name='temperature-new'>
+            <button type='submit'>Dodaj nową temperaturę</button>
+        </form>
+    </dialog>
 </body>
 
 </html>
