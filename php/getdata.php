@@ -5,7 +5,22 @@ session_start();
 $width  = (int)$_GET['width'];
 $height = (int)$_GET['height'];
 $margin = (int)$_GET['margin'];
-$graphID = 1;//(int)$_GET['graphID'];
+$graphID = (int)$_GET['graphID'];
+
+$sql = "
+    SELECT Name FROM Graphs
+    WHERE ID = :id
+";
+
+$stmt = $dbh->prepare($sql);
+$stmt->bindParam(':id', $graphID, PDO::PARAM_INT);
+$stmt->execute();
+$serverData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+if(!isset($serverData['Name'])) {
+    echo "No graph with that ID";
+    exit;
+}
 
 $sql = "
     SELECT COUNT(Day) AS Days FROM Temperature
