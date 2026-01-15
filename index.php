@@ -84,14 +84,17 @@ $c = $dbh->exec("set names utf8");
                         <a href='#' class='password-forgot'>Zapomniałem hasła</a>
                     </div>
                 </form>
-                <?php 
-                if(isset($_SESSION['userID'])) {
-                    echo "
-                        <div id='container'>
-                        </div>
-                    ";
-                }
-                ?>
+                <div class='datagrid'>
+                    <button class='add-button' onclick='newRecordDialog()'>Dodaj pomiar</button>
+                    <?php 
+                    if(isset($_SESSION['userID'])) {
+                        echo "
+                            <div id='container'>
+                            </div>
+                        ";
+                    }
+                    ?>
+                </div>
             </div>
         </div>
         <footer>
@@ -99,11 +102,17 @@ $c = $dbh->exec("set names utf8");
         </footer>
     </div>
     <dialog id='addRecordDialog' class='dialog-window'>
-        <form method='post' action='php/addrecord.php'>
-            <label for='temperature-new'>Nowy dzień</label>
-            <input type='number' id='temperature-new' name='temperature-new'>
-            <button type='submit'>Dodaj nową temperaturę</button>
-        </form>
+        <div class='form-container'>
+            <form method='post' action='php/addrecord.php' class='dialog-form'>
+                <h2>Dodaj nowy dzień</h2>
+                <label for='temperature-new'>Temperatura</label>
+                <input class='form-input' type='number' id='temperature-new' name='temperature-new'>
+                <button type='submit' class='form-button'>Dodaj nową temperaturę</button>
+                <button type='button' class='form-button'>Choroba</button>
+                <button type='button' class='form-button' onclick='addRecord()'>Brak pomiaru</button>
+                <button type='button' class='form-button' onclick='document.getElementById("addRecordDialog").close()'>Zamknij</button>
+            </form>
+        </div>
     </dialog>
 </body>
 

@@ -1,5 +1,3 @@
-import { newRecordDialog } from './navigation.js';
-
 export const getData = async () => {
     const container = document.getElementById('container');
 
@@ -11,21 +9,15 @@ export const getData = async () => {
     console.log('Deleting inner HTML in container');
     container.innerHTML = '';
 
-    const addButton = document.createElement('button');
-    addButton.className = 'add-button';
-    addButton.textContent = 'Dodaj pomiar';
-    addButton.onclick = newRecordDialog;
-    container.appendChild(addButton);
-
-    const newGraphForm = document.createElement('form');
-    newGraphForm.action = 'php/newgraph.php';
-    newGraphForm.method = 'POST';
-    const submitButton = document.createElement('button');
-    submitButton.type = 'submit';
-    submitButton.className = 'add-button';
-    submitButton.textContent = 'Dodaj nowy wykres';
-    newGraphForm.appendChild(submitButton);
-    container.appendChild(newGraphForm);
+    // const newGraphForm = document.createElement('form');
+    // newGraphForm.action = 'php/newgraph.php';
+    // newGraphForm.method = 'POST';
+    // const submitButton = document.createElement('button');
+    // submitButton.type = 'submit';
+    // submitButton.className = 'add-button';
+    // submitButton.textContent = 'Dodaj nowy wykres';
+    // newGraphForm.appendChild(submitButton);
+    // container.appendChild(newGraphForm);
 
     const height = window.innerHeight - 300;
 
