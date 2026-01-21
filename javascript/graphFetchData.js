@@ -1,4 +1,5 @@
 export const getData = async (graphID) => {
+    console.log(`Graph id: ${graphID}`);
     const container = document.getElementById('container');
 
     if (!container) {
@@ -18,6 +19,7 @@ export const getData = async (graphID) => {
              usemap="#graphmap">
     `;
 
+    console.log(`php/getdata.php?width=1000&height=${height}&margin=100&graphID=${graphID}`);
     console.log('Fetching image map data');
     try {
         const response = await fetch(

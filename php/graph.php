@@ -1,6 +1,6 @@
 <?php
 include("cfg.php");
-header('Content-Type: image/png');
+// header('Content-Type: image/png');
 
 session_start();
 $c=$dbh->exec("set names utf8");
@@ -65,8 +65,9 @@ $dataQuery = "
     ORDER BY Temperature.Day ASC
 ";
 
-$graphID = isset($_SESSION['id']) ? (int)$_SESSION['id'] : 1;
-$userID  = isset($_SESSION['userID']) ? (int)$_SESSION['userID'] : 1;
+$graphID = (int)$_SESSION['id'];
+$userID  = (int)$_SESSION['userID'];
+echo "GraphID: $graphID, userID: $userID";
 $dataStmt = $dbh->prepare($dataQuery);
 $dataStmt->bindParam(':id', $graphID, PDO::PARAM_INT);
 $dataStmt->bindParam(':userID', $userID, PDO::PARAM_INT);
@@ -212,5 +213,5 @@ addMarkerLines($im, $data);
 //     imageline($im, 0, $y, $y, 1000, IMG_COLOR_STYLED);
 // }
 
-imagepng($im);
+// imagepng($im);
 ?>

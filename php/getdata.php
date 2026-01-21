@@ -7,6 +7,8 @@ $height = (int)$_GET['height'];
 $margin = (int)$_GET['margin'];
 $graphID = (int)$_GET['graphID'];
 
+echo "width: ".$width.", height: ".$height.", margin: ".$margin.", graphID: ".$graphID;
+
 $sql = "
     SELECT Name FROM Graphs
     WHERE ID = :id
@@ -15,10 +17,12 @@ $sql = "
 $stmt = $dbh->prepare($sql);
 $stmt->bindParam(':id', $graphID, PDO::PARAM_INT);
 $stmt->execute();
-$serverData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$serverData = $stmt->fetchAll(PDO::FETCH_NUM); // DO NOT CHANGE, YOU WILL BREAK STUFF
 
-if(!isset($serverData['Name'])) {
-    echo "No graph with that ID";
+if(!isset($serverData[0])) {      // This is a mean check
+    echo $serverData[0];          // For some reason it works only when
+    echo $graphID;                // we fetch num table and not assoc
+    echo "No graph with that ID"; // I am confused :)
     exit;
 }
 

@@ -32,13 +32,23 @@ $c = $dbh->exec("set names utf8");
                             $stmt->bindParam(':id', $_SESSION['userID'], PDO::PARAM_INT);
                             $stmt->execute();
                             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
                             $row = $result[0];
                             $login = explode('@', $row['login'])[0];
+
                             echo "
                             <form action='php/signout.php'>
                                 <button class='logo-login'><!--<i class='fa-solid fa-gears'></i>--> {$login}</button>
                             </form>
                             ";
+
+                            $query = 'SELECT ID FROM graphs WHERE UserID = :id LIMIT 1'
+                            $stmt = $dbh->prepare($query);
+                            $stmt->bindParam(':id', $_SESSION['userID'], PDO::PARAM_INT);
+                            $stmt->execute();
+                            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                            $row = $result[0];
+                            
                         }
                      ?>
                     
