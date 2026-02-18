@@ -14,17 +14,17 @@ export const getData = async (graphID) => {
 
     console.log('Adding image to container');
     container.innerHTML += `
-        <img src="php/graph.php?width=1000&height=${height}&margin=100&days=20&t=${Math.random()}"
+        <img src="php/graph.php?width=1000&height=${height}&margin=100&days=20&graphID=${graphID}&t=${Math.random()}"
              alt="Temperatura"
              usemap="#graphmap">
     `;
 
-    console.log(`php/getdata.php?width=1000&height=${height}&margin=100&graphID=${graphID}`);
+    const imagemapLink = `php/getdata.php?width=1000&height=${height}&margin=100&graphID=${graphID}`
+
+    console.log(imagemapLink);
     console.log('Fetching image map data');
     try {
-        const response = await fetch(
-            `php/getdata.php?width=1000&height=${height}&margin=100&graphID=${graphID}`
-        );
+        const response = await fetch(imagemapLink);
         const data = await response.text();
         container.innerHTML += data;
     } catch (error) {

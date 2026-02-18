@@ -20,7 +20,7 @@ $c = $dbh->exec("set names utf8");
             <div>
                 <div class='logo-box'>
                     <img class='logo' src='gfx/logo.png' alt='Logo'>
-                    <!-- <script src='https://kit.fontawesome.com/fadd1db071.js' crossorigin='anonymous'></script> -->
+                    <script src='https://kit.fontawesome.com/fadd1db071.js' crossorigin='anonymous'></script>
                      <?php
                         if(!isset($_SESSION['userID'])) {
                             echo "
@@ -42,13 +42,13 @@ $c = $dbh->exec("set names utf8");
                             </form>
                             ";
 
-                            $query = 'SELECT ID FROM graphs WHERE UserID = :id LIMIT 1'
+                            $query = 'SELECT ID FROM graphs WHERE UserID = :id LIMIT 1';
                             $stmt = $dbh->prepare($query);
                             $stmt->bindParam(':id', $_SESSION['userID'], PDO::PARAM_INT);
                             $stmt->execute();
-                            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                            $result = $stmt->fetchAll(PDO::FETCH_NUM);
                             $row = $result[0];
-                            
+                            echo $row[0];
                         }
                      ?>
                     
@@ -103,10 +103,10 @@ $c = $dbh->exec("set names utf8");
                         <button class='add-button' onclick='newRecordDialog()'>Dodaj pomiar</button>
                         <div class='graph-nav'>
                             <button class='graph-nav-button' onclick='previousGraph()'><</button>
-                            <span class='graph-nav-text' id='graph-nav-text'>Wykres 1</span>
+                            <span class='graph-nav-text' id='graph-nav-text'>Wykres</span>
                             <button class='graph-nav-button' onclick='nextGraph()'>></button>
                         </div>
-                        <button class='add-button' onclick='newGraphDialog()()'>Dodaj nowy wykres</button>
+                        <button class='add-button' onclick='newGraphDialog()'>Dodaj nowy wykres</button>
                     </div>
                     <?php 
                     if(isset($_SESSION['userID'])) {

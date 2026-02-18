@@ -7,7 +7,7 @@ $height = (int)$_GET['height'];
 $margin = (int)$_GET['margin'];
 $graphID = (int)$_GET['graphID'];
 
-echo "width: ".$width.", height: ".$height.", margin: ".$margin.", graphID: ".$graphID;
+// echo "width: ".$width.", height: ".$height.", margin: ".$margin.", graphID: ".$graphID."<br>";
 
 $sql = "
     SELECT Name FROM Graphs
@@ -41,7 +41,7 @@ $serverData = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 foreach ($serverData as $row) {
     $days = $row['Days'];
-    echo $days;
+    // echo $days;
 }
 
 $sql = "

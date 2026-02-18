@@ -1,0 +1,206 @@
+width: 1000,
+height: 538,
+margin: 100,
+days: 20,
+graphID: 1,
+userID: 1,
+minTemp: 36,
+maxTemp: 37,
+temp: 36,
+lineNumber: 0,
+place: 895,
+lineMarginsHorizontal: 67.6,
+lineMarginsVertical: 40
+
+    SELECT
+        Temperature.ID, Temperature.Day, Temperature.Temperature,
+        Temperature.isDone, Temperature.isIllness
+    FROM Temperature
+    INNER JOIN Graphs ON Graphs.ID = Temperature.GraphID
+    WHERE Graphs.ID = :id AND Graphs.UserID = :userID
+    ORDER BY Temperature.Day ASC
+
+Day: 1,
+Temperature: 36.62,
+isDone: 1,
+isIllness: 0,
+
+Day: 2,
+Temperature: 36.445,
+isDone: 1,
+isIllness: 0,
+
+Day: 3,
+Temperature: 36.53,
+isDone: 1,
+isIllness: 0,
+
+Day: 4,
+Temperature: 36.322,
+isDone: 1,
+isIllness: 0,
+
+Day: 5,
+Temperature: 36.55,
+isDone: 1,
+isIllness: 0,
+
+Day: 6,
+Temperature: 36.275,
+isDone: 1,
+isIllness: 0,
+
+Day: 7,
+Temperature: 36.7,
+isDone: 1,
+isIllness: 0,
+
+Day: 8,
+Temperature: 36.9,
+isDone: 1,
+isIllness: 1,
+
+Day: 9,
+Temperature: 36.7,
+isDone: 1,
+isIllness: 1,
+
+Day: 10,
+Temperature: 36.72,
+isDone: 1,
+isIllness: 0,
+
+Day: 11,
+Temperature: 36.377,
+isDone: 1,
+isIllness: 0,
+
+Day: 12,
+Temperature: 36.72,
+isDone: 1,
+isIllness: 1,
+
+Day: 13,
+Temperature: 36,
+isDone: 0,
+isIllness: 0,
+
+Day: 14,
+Temperature: 36,
+isDone: 0,
+isIllness: 0,
+
+Day: 15,
+Temperature: 36,
+isDone: 0,
+isIllness: 0,
+
+Day: 16,
+Temperature: 36.7,
+isDone: 1,
+isIllness: 1,
+
+Day: 17,
+Temperature: 36.7,
+isDone: 1,
+isIllness: 1,
+
+Day: 18,
+Temperature: 36.7,
+isDone: 1,
+isIllness: 1,
+
+Day: 19,
+Temperature: 36.5,
+isDone: 1,
+isIllness: 0,
+
+Day: 20,
+Temperature: 36.733,
+isDone: 1,
+isIllness: 0,
+
+Graph creation running...
+Horizontal lines generation running...
+Creating horizontal line on (100, 438, 900, 438)
+Creating horizontal line on (100, 370.4, 900, 370.4)
+Creating horizontal line on (100, 302.8, 900, 302.8)
+Creating horizontal line on (100, 235.2, 900, 235.2)
+Creating horizontal line on (100, 167.6, 900, 167.6)
+Horizontal lines generation ending...
+Vertical lines generation running...
+Creating vertical line on (900, 100, 900, 438)
+Creating vertical line on (860, 100, 860, 438)
+Creating vertical line on (820, 100, 820, 438)
+Creating vertical line on (780, 100, 780, 438)
+Creating vertical line on (740, 100, 740, 438)
+Creating vertical line on (700, 100, 700, 438)
+Creating vertical line on (660, 100, 660, 438)
+Creating vertical line on (620, 100, 620, 438)
+Creating vertical line on (580, 100, 580, 438)
+Creating vertical line on (540, 100, 540, 438)
+Creating vertical line on (500, 100, 500, 438)
+Creating vertical line on (460, 100, 460, 438)
+Creating vertical line on (420, 100, 420, 438)
+Creating vertical line on (380, 100, 380, 438)
+Creating vertical line on (340, 100, 340, 438)
+Creating vertical line on (300, 100, 300, 438)
+Creating vertical line on (260, 100, 260, 438)
+Creating vertical line on (220, 100, 220, 438)
+Creating vertical line on (180, 100, 180, 438)
+Creating vertical line on (140, 100, 140, 438)
+Creating vertical line on (100, 100, 100, 438)
+Vertical lines generation ending...
+'for' loop starting...
+'for' loop ending...
+generateMarkers running...
+
+Creating marker on (x: 140, y: 228.44)
+Creating marker on (x: 180, y: 287.59)
+Creating marker on (x: 220, y: 258.86)
+Creating marker on (x: 260, y: 329.164)
+Creating marker on (x: 300, y: 252.1)
+Creating marker on (x: 340, y: 345.05)
+Creating marker on (x: 380, y: 201.4)
+Creating marker on (x: 420, y: 438)
+Creating marker on (x: 460, y: 438)
+Creating marker on (x: 500, y: 194.64)
+Creating marker on (x: 540, y: 310.574)
+Creating marker on (x: 580, y: 438)
+Creating marker on (x: 620, y: 438)
+Creating marker on (x: 660, y: 438)
+Creating marker on (x: 700, y: 438)
+Creating marker on (x: 740, y: 438)
+Creating marker on (x: 780, y: 438)
+Creating marker on (x: 820, y: 438)
+Creating marker on (x: 860, y: 269)
+Creating marker on (x: 900, y: 190.246)
+
+generateMarkers ending...
+
+addMarkerLines running...
+
+Creating marker line on (x1: 140, y1: 228.44x2: 140, y2: 228.44)
+Creating marker line on (x1: 180, y1: 287.59x2: 180, y2: 287.59)
+Creating marker line on (x1: 220, y1: 258.86x2: 220, y2: 258.86)
+Creating marker line on (x1: 260, y1: 329.164x2: 260, y2: 329.164)
+Creating marker line on (x1: 300, y1: 252.1x2: 300, y2: 252.1)
+Creating marker line on (x1: 340, y1: 345.05x2: 340, y2: 345.05)
+Creating marker line on (x1: 380, y1: 201.4x2: 380, y2: 201.4)
+Creating marker line on (x1: 0, y1: 0x2: 0, y2: 0)
+Creating marker line on (x1: 0, y1: 0x2: 0, y2: 0)
+Creating marker line on (x1: 500, y1: 194.64x2: 500, y2: 194.64)
+Creating marker line on (x1: 540, y1: 310.574x2: 540, y2: 310.574)
+Creating marker line on (x1: 0, y1: 0x2: 0, y2: 0)
+Creating marker line on (x1: 0, y1: 0x2: 0, y2: 0)
+Creating marker line on (x1: 0, y1: 0x2: 0, y2: 0)
+Creating marker line on (x1: 0, y1: 0x2: 0, y2: 0)
+Creating marker line on (x1: 0, y1: 0x2: 0, y2: 0)
+Creating marker line on (x1: 0, y1: 0x2: 0, y2: 0)
+Creating marker line on (x1: 0, y1: 0x2: 0, y2: 0)
+Creating marker line on (x1: 860, y1: 269x2: 860, y2: 269)
+Creating marker line on (x1: 900, y1: 190.246x2: 900, y2: 190.246)
+
+generateMarkers ending...
+
+imagepng generation ended
