@@ -20,3 +20,10 @@ lineMarginsVertical: 40
     WHERE Graphs.ID = :id AND Graphs.UserID = :userID
     ORDER BY Temperature.Day ASC
 
+
+User has 1 graphs
+Session data - user ID: 1, graphs amount: 1
+User logged successfully: admin@gmail.com
+User has 1 graphs
+Session data - user ID: 1, graphs amount: 1
+User logged successfully: admin@gmail.com

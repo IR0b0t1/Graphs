@@ -1,5 +1,5 @@
-export const getData = async (graphID) => {
-    console.log(`Graph id: ${graphID}`);
+export const getData = async (graphNo) => {
+    console.log(`Graph id: ${graphNo}`);
     const container = document.getElementById('container');
 
     if (!container) {
@@ -14,12 +14,12 @@ export const getData = async (graphID) => {
 
     console.log('Adding image to container');
     container.innerHTML += `
-        <img src="php/graph.php?width=1000&height=${height}&margin=100&days=20&graphID=${graphID}&t=${Math.random()}"
+        <img src="php/graph.php?width=1000&height=${height}&margin=100&days=20&graphNo=${graphNo}&t=${Math.random()}"
              alt="Temperatura"
              usemap="#graphmap">
     `;
 
-    const imagemapLink = `php/getdata.php?width=1000&height=${height}&margin=100&graphID=${graphID}`
+    const imagemapLink = `php/getdata.php?width=1000&height=${height}&margin=100&graphNo=${graphNo}`
 
     console.log(imagemapLink);
     console.log('Fetching image map data');

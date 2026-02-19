@@ -10,7 +10,7 @@ $c = $dbh->exec("set names utf8");
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <link href='stylesheet/main.css' rel='stylesheet'>
-    <script type="module" src="javascript/main.js"></script>
+    <script type="module" src="javascript/main.js" defer></script>
     <title>Graphs</title>
 </head>
 
@@ -42,13 +42,18 @@ $c = $dbh->exec("set names utf8");
                             </form>
                             ";
 
-                            $query = 'SELECT ID FROM graphs WHERE UserID = :id LIMIT 1';
+                            $query = 'SELECT graphNo FROM graphs WHERE UserID = :id LIMIT 1';
                             $stmt = $dbh->prepare($query);
                             $stmt->bindParam(':id', $_SESSION['userID'], PDO::PARAM_INT);
                             $stmt->execute();
                             $result = $stmt->fetchAll(PDO::FETCH_NUM);
                             $row = $result[0];
-                            echo $row[0];
+                            echo "<script>
+                                document.addEventListener('DOMContentLoaded', () => {
+                                    getData(".$row[0].");
+                                });
+                                </script>";
+                            // echo $row[0];
                         }
                      ?>
                     
@@ -106,7 +111,7 @@ $c = $dbh->exec("set names utf8");
                             <span class='graph-nav-text' id='graph-nav-text'>Wykres</span>
                             <button class='graph-nav-button' onclick='nextGraph()'>></button>
                         </div>
-                        <button class='add-button' onclick='newGraphDialog()'>Dodaj nowy wykres</button>
+                        <button class='add-button' onclick='addNewGraph(1)'>Dodaj nowy wykres</button>
                     </div>
                     <?php 
                     if(isset($_SESSION['userID'])) {
@@ -129,9 +134,9 @@ $c = $dbh->exec("set names utf8");
                 <h2>Dodaj nowy dzień</h2>
                 <label for='temperature-new'>Temperatura</label>
                 <input class='form-input' type='number' id='temperature-new' name='temperature-new'>
-                <button type='submit' class='form-button'>Dodaj nową temperaturę</button>
-                <button type='button' class='form-button'>Choroba</button>
-                <button type='button' class='form-button' onclick='addRecord()'>Brak pomiaru</button>
+                <button type='submit' class='form-button'>Dodaj dzień</button>
+                <button type='button' class='form-button' onclick='addIllness()'>Choroba</button>
+                <button type='button' class='form-button' onclick='addNotDone()'>Brak pomiaru</button>
                 <button type='button' class='form-button' onclick='document.getElementById("addRecordDialog").close()'>Zamknij</button>
             </form>
         </div>

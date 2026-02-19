@@ -2,6 +2,7 @@ width: 1000,
 height: 538,
 margin: 100,
 days: 20,
+graphNo: 1,
 graphID: 1,
 userID: 1,
 minTemp: 36,
@@ -51,7 +52,7 @@ isDone: 1,
 isIllness: 0,
 
 Day: 7,
-Temperature: 36.7,
+Temperature: 36.76,
 isDone: 1,
 isIllness: 0,
 
@@ -161,7 +162,7 @@ Creating marker on (x: 220, y: 258.86)
 Creating marker on (x: 260, y: 329.164)
 Creating marker on (x: 300, y: 252.1)
 Creating marker on (x: 340, y: 345.05)
-Creating marker on (x: 380, y: 201.4)
+Creating marker on (x: 380, y: 181.12)
 Creating marker on (x: 420, y: 438)
 Creating marker on (x: 460, y: 438)
 Creating marker on (x: 500, y: 194.64)
@@ -186,7 +187,7 @@ Creating marker line on (x1: 220, y1: 258.86x2: 220, y2: 258.86)
 Creating marker line on (x1: 260, y1: 329.164x2: 260, y2: 329.164)
 Creating marker line on (x1: 300, y1: 252.1x2: 300, y2: 252.1)
 Creating marker line on (x1: 340, y1: 345.05x2: 340, y2: 345.05)
-Creating marker line on (x1: 380, y1: 201.4x2: 380, y2: 201.4)
+Creating marker line on (x1: 380, y1: 181.12x2: 380, y2: 181.12)
 Creating marker line on (x1: 0, y1: 0x2: 0, y2: 0)
 Creating marker line on (x1: 0, y1: 0x2: 0, y2: 0)
 Creating marker line on (x1: 500, y1: 194.64x2: 500, y2: 194.64)

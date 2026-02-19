@@ -1,12 +1,15 @@
 import { getData } from './graphFetchData.js';
 import { loginPage, registerPage, nodeClicked } from './navigation.js';
 import { addRecord, newRecordDialog } from './graphAddRecord.js'
+import { addNewGraph } from './graphAddNew.js';
 
 window.loginPage = loginPage;
 window.registerPage = registerPage;
 window.nodeClicked = nodeClicked;
 window.addRecord = addRecord;
 window.newRecordDialog = newRecordDialog;
+window.addNewGraph = addNewGraph;
+window.getData = getData;
 
 document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('container');

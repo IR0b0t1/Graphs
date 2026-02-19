@@ -58,6 +58,7 @@ noDataButton.className = 'form-button';
 noDataButton.innerText = 'Brak pomiaru';
 
 saveButton.addEventListener('click', async (e) => {
+    console.log("saveButton eventListener called...");
     e.preventDefault();
     await updateData(day, temperatureInput.value, false, true);
     dialog.close();
@@ -65,6 +66,7 @@ saveButton.addEventListener('click', async (e) => {
 });
 
 illButton.addEventListener('click', async (e) => {
+    console.log("illButton eventListener called...");
     e.preventDefault();
     await updateData(day, temperatureInput.value, true, true);
     dialog.close();
@@ -72,6 +74,7 @@ illButton.addEventListener('click', async (e) => {
 });
 
 noDataButton.addEventListener('click', async (e) => {
+    console.log("noDataButton eventListener called...");
     e.preventDefault();
     await updateData(day, 0, false, false);
     dialog.close();
@@ -107,7 +110,7 @@ export const nodeClicked = (
     clickedIsDone,
     clickedId
 ) => {
-    console.log('Click');
+    console.log('nodeClicked called...');
 
     day = clickedDay;
     temperature = clickedTemperature;
