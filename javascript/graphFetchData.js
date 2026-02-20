@@ -11,15 +11,16 @@ export const getData = async (graphNo) => {
     container.innerHTML = '';
 
     const height = window.innerHeight - 320;
+    const width = 1300;
 
     console.log('Adding image to container');
     container.innerHTML += `
-        <img src="php/graph.php?width=1000&height=${height}&margin=100&graphNo=${graphNo}&t=${Math.random()}"
+        <img src="php/graph.php?width=${width}&height=${height}&margin=100&graphNo=${graphNo}&t=${Math.random()}"
              alt="Temperatura"
              usemap="#graphmap">
     `;
 
-    const imagemapLink = `php/getdata.php?width=1000&height=${height}&margin=100&graphNo=${graphNo}`
+    const imagemapLink = `php/getdata.php?width=${width}&height=${height}&margin=100&graphNo=${graphNo}`
 
     console.log(imagemapLink);
     console.log('Fetching image map data');

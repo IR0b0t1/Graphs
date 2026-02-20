@@ -1,3 +1,5 @@
+import { getData } from './graphFetchData.js';
+
 export const newRecordDialog = () => {
     console.log('New Record Dialog');
     document.getElementById('addRecordDialog').showModal();
@@ -15,6 +17,7 @@ export const addRecord = async (graphNo) => {
     `isDone: ${isDone}`]);
     await fetch(`php/addrecord.php?graphNo=${graphNo}&temperature=${temperature}&isIll=${isIll}&isDone=${isDone}`)
         .then(dialog.close())
+        .then(getData(graphNo))
 }
 
 export const addNotDone = async (graphNo) => {
@@ -27,10 +30,9 @@ export const addNotDone = async (graphNo) => {
     `temperature: ${temperature}`,
     `isIll: ${isIll}`,
     `isDone: ${isDone}`]);
-    // await fetch(
-    //     `php/addrecord.php?graphNo=${graphNo}&temperature=0&isIll=false&isDone=false`
-    // );
-    dialog.close();
+    await fetch(`php/addrecord.php?graphNo=${graphNo}&temperature=${temperature}&isIll=${isIll}&isDone=${isDone}`)
+        .then(dialog.close())
+        .then(getData(graphNo))
 }
 
 export const addIllness = async (graphNo) => {
@@ -43,8 +45,7 @@ export const addIllness = async (graphNo) => {
     `temperature: ${temperature}`,
     `isIll: ${isIll}`,
     `isDone: ${isDone}`]);
-    // await fetch(
-    //     `php/addrecord.php?graphNo=${graphNo}&temperature=0&isIll=true&isDone=false`
-    // );
-    dialog.close();
+    await fetch(`php/addrecord.php?graphNo=${graphNo}&temperature=${temperature}&isIll=${isIll}&isDone=${isDone}`)
+        .then(dialog.close())
+        .then(getData(graphNo))
 }
