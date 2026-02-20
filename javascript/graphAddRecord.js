@@ -3,22 +3,48 @@ export const newRecordDialog = () => {
     document.getElementById('addRecordDialog').showModal();
 }
 
-export const addRecord = async (graphID, temperature, isIll, isDone) => {
-    await fetch(
-        `php/addrecord.php?graphID=${graphID}&temperature=${temperature}&isIll=${isIll}&isDone=${isDone}`
-    );
+export const addRecord = async (graphNo) => {
+    const dialog = document.getElementById("addRecordDialog");
+    const temperature = document.getElementById("temperatureNew").value;
+    const isIll = false;
+    const isDone = true;
+    console.log("addRecord function called");
+    console.table([`graphNo: ${graphNo}`,
+    `temperature: ${temperature}`,
+    `isIll: ${isIll}`,
+    `isDone: ${isDone}`]);
+    await fetch(`php/addrecord.php?graphNo=${graphNo}&temperature=${temperature}&isIll=${isIll}&isDone=${isDone}`)
+        .then(dialog.close())
 }
 
-export const addNotDone = async (graphID) => {
+export const addNotDone = async (graphNo) => {
+    const dialog = document.getElementById("addRecordDialog");
+    const temperature = document.getElementById("temperatureNew").value;
+    const isIll = false;
+    const isDone = false;
     console.log("addNotDone function called");
-    await fetch(
-        `php/addrecord.php?graphID=${graphID}&temperature=0&isIll=false&isDone=false`
-    );
+    console.table([`graphNo: ${graphNo}`,
+    `temperature: ${temperature}`,
+    `isIll: ${isIll}`,
+    `isDone: ${isDone}`]);
+    // await fetch(
+    //     `php/addrecord.php?graphNo=${graphNo}&temperature=0&isIll=false&isDone=false`
+    // );
+    dialog.close();
 }
 
-export const addIllness = async (graphID) => {
+export const addIllness = async (graphNo) => {
+    const dialog = document.getElementById("addRecordDialog");
+    const temperature = document.getElementById("temperatureNew").value;
+    const isIll = true;
+    const isDone = false;
     console.log("addIllness function called");
-    await fetch(
-        `php/addrecord.php?graphID=${graphID}&temperature=0&isIll=true&isDone=false`
-    );
+    console.table([`graphNo: ${graphNo}`,
+    `temperature: ${temperature}`,
+    `isIll: ${isIll}`,
+    `isDone: ${isDone}`]);
+    // await fetch(
+    //     `php/addrecord.php?graphNo=${graphNo}&temperature=0&isIll=true&isDone=false`
+    // );
+    dialog.close();
 }

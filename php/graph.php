@@ -11,16 +11,8 @@ $log = fopen("imageDebug.txt", "w");
 $width = $_GET['width'];
 $height = $_GET['height'];
 $margin = $_GET['margin'];
-$days = $_GET['days'];
 $graphNo = $_GET['graphNo'];
 $userID  = (int)$_SESSION['userID'];
-$minTemp = 36.0;
-$maxTemp = 37.0;
-$temp = 36.0;
-$lineNumber = 0;
-$place = $width-105;
-$lineMarginsHorizontal = ($height - 2 * $margin)/5;
-$lineMarginsVertical = ($width - 2 * $margin)/$days;
 
 $sql = "SELECT ID FROM Graphs
         WHERE UserID = :userID AND GraphNo = :graphNo";
@@ -30,8 +22,24 @@ $stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
 $stmt->bindParam(':graphNo', $graphNo, PDO::PARAM_INT);
 $stmt->execute();
 $serverData = $stmt->fetchAll(PDO::FETCH_NUM);
-$row = $serverData[0];
-$graphID = $row[0];
+$graphID = $serverData[0][0];
+
+$sql = "SELECT COUNT(ID) FROM temperature
+        WHERE GraphID = :graphID";
+
+$stmt = $dbh->prepare($sql);
+$stmt->bindParam(':graphID', $graphID, PDO::PARAM_INT);
+$stmt->execute();
+$serverData = $stmt->fetchAll(PDO::FETCH_NUM);
+$days = $serverData[0][0];
+
+$minTemp = 36.0;
+$maxTemp = 37.0;
+$temp = 36.0;
+$lineNumber = 0;
+$place = $width-105;
+$lineMarginsHorizontal = ($height - 2 * $margin)/5;
+$lineMarginsVertical = ($width - 2 * $margin)/$days;
 
 fwrite($log, "width: $width,\nheight: $height,\nmargin: $margin,\ndays: $days,\ngraphNo: $graphNo,\ngraphID: $graphID,\nuserID: $userID,\nminTemp: $minTemp,\nmaxTemp: $maxTemp,\ntemp: $temp,\nlineNumber: $lineNumber,\nplace: $place,\nlineMarginsHorizontal: $lineMarginsHorizontal,\nlineMarginsVertical: $lineMarginsVertical\n");
 

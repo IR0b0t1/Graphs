@@ -14,7 +14,7 @@ export const getData = async (graphNo) => {
 
     console.log('Adding image to container');
     container.innerHTML += `
-        <img src="php/graph.php?width=1000&height=${height}&margin=100&days=20&graphNo=${graphNo}&t=${Math.random()}"
+        <img src="php/graph.php?width=1000&height=${height}&margin=100&graphNo=${graphNo}&t=${Math.random()}"
              alt="Temperatura"
              usemap="#graphmap">
     `;

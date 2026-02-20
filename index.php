@@ -53,7 +53,6 @@ $c = $dbh->exec("set names utf8");
                                     getData(".$graphNo.");
                                 });
                                 </script>";
-                            // echo $row[0];
                         }
                      ?>
                     
@@ -107,11 +106,11 @@ $c = $dbh->exec("set names utf8");
                     <div style='display: flex; justify-content: space-around; margin: 10px;'>
                         <button class='add-button' onclick='newRecordDialog()'>Dodaj pomiar</button>
                         <div class='graph-nav'>
-                            <button class='graph-nav-button' onclick='previousGraph()'><</button>
-                            <span class='graph-nav-text' id='graph-nav-text'>Wykres</span>
-                            <button class='graph-nav-button' onclick='nextGraph()'>></button>
+                            <button class='graph-nav-button' onclick='previousGraph(<?php echo $graphNo;?>)'><</button>
+                            <span class='graph-nav-text' id='graph-nav-text'>Wykres <?php echo $graphNo;?></span>
+                            <button class='graph-nav-button' onclick='nextGraph(<?php echo $graphNo;?>)'>></button>
                         </div>
-                        <button class='add-button' onclick='addNewGraph(1)'>Dodaj nowy wykres</button>
+                        <button class='add-button' onclick='addNewGraph(<?php echo $graphNo;?>)'>Dodaj nowy wykres</button>
                     </div>
                     <?php 
                     if(isset($_SESSION['userID'])) {
@@ -130,13 +129,13 @@ $c = $dbh->exec("set names utf8");
     </div>
     <dialog id='addRecordDialog' class='dialog-window'>
         <div class='form-container'>
-            <form method='post' action='php/addrecord.php' class='dialog-form'>
+            <form class='dialog-form'>
                 <h2>Dodaj nowy dzień</h2>
                 <label for='temperature-new'>Temperatura</label>
-                <input class='form-input' type='number' id='temperature-new' name='temperature-new'>
-                <button type='submit' class='form-button'>Dodaj dzień</button>
-                <button type='button' class='form-button' onclick='addIllness()'>Choroba</button>
-                <button type='button' class='form-button' onclick='addNotDone()'>Brak pomiaru</button>
+                <input class='form-input' type='number' id='temperatureNew' name='temperature-new' min='36' max='37'>
+                <button type='button' class='form-button' onclick='addRecord(<?php echo $graphNo?>)'>Dodaj dzień</button>
+                <button type='button' class='form-button' onclick='addIllness(<?php echo $graphNo?>)'>Choroba</button>
+                <button type='button' class='form-button' onclick='addNotDone(<?php echo $graphNo?>)'>Brak pomiaru</button>
                 <button type='button' class='form-button' onclick='document.getElementById("addRecordDialog").close()'>Zamknij</button>
             </form>
         </div>
@@ -147,13 +146,13 @@ $c = $dbh->exec("set names utf8");
                 <h2>Edytuj dzień</h2>
                 <label id='dayLabel' for='editTemperatureInput'></label>
                 <input type='number' name='temperature-change' id='editTemperatureInput' class='form-input' min='36' max='37'>
-                <input type='hidden' name='temperature-graphno'id='editTemperatureGraphNo' <?php echo "value='".$graphNo."'"?>>
+                <input type='hidden' name='temperature-graphno'id='editTemperatureGraphNo' <?php echo "value='".$graphNo."'";?>>
                 <button type='button' class='form-button' id='editTemperatureSave'>Zapisz temperaturę</button>
                 <button type='button' class='form-button' id='editTemperatureIll'>Choroba</button>
                 <button type='button' class='form-button' id='editTemperatureNoData'>Brak pomiaru</button>
             </form>
             <form method='dialog' class='dialog-form'>
-                <button type='button' class='form-button' id='editTemperatureClose'>Zamknij</button>
+                <button type='submit' class='form-button' id='editTemperatureClose'>Zamknij</button>
             </form>
         </div>
     </dialog>

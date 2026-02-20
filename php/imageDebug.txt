@@ -1,7 +1,7 @@
 width: 1000,
 height: 518,
 margin: 100,
-days: 20,
+days: 22,
 graphNo: 1,
 graphID: 1,
 userID: 1,
@@ -11,7 +11,7 @@ temp: 36,
 lineNumber: 0,
 place: 895,
 lineMarginsHorizontal: 63.6,
-lineMarginsVertical: 40
+lineMarginsVertical: 36.363636363636
 
     SELECT
         Temperature.ID, Temperature.Day, Temperature.Temperature,
@@ -27,17 +27,17 @@ isDone: 1,
 isIllness: 0,
 
 Day: 2,
-Temperature: 36.445,
+Temperature: 36.545,
 isDone: 1,
 isIllness: 0,
 
 Day: 3,
-Temperature: 36.53,
+Temperature: 36.432,
 isDone: 1,
 isIllness: 0,
 
 Day: 4,
-Temperature: 36.322,
+Temperature: 36.582,
 isDone: 1,
 isIllness: 0,
 
@@ -47,39 +47,39 @@ isDone: 1,
 isIllness: 0,
 
 Day: 6,
-Temperature: 36.275,
+Temperature: 36.574,
 isDone: 1,
 isIllness: 0,
 
 Day: 7,
-Temperature: 36.76,
+Temperature: 36.65,
 isDone: 1,
-isIllness: 0,
+isIllness: 1,
 
 Day: 8,
-Temperature: 36.9,
+Temperature: 36.71,
 isDone: 1,
 isIllness: 1,
 
 Day: 9,
-Temperature: 36.7,
+Temperature: 36.623,
 isDone: 1,
 isIllness: 1,
 
 Day: 10,
-Temperature: 36.72,
+Temperature: 36.71,
 isDone: 1,
 isIllness: 0,
 
 Day: 11,
-Temperature: 36.377,
+Temperature: 36.675,
 isDone: 1,
 isIllness: 0,
 
 Day: 12,
-Temperature: 36.72,
+Temperature: 36.53,
 isDone: 1,
-isIllness: 1,
+isIllness: 0,
 
 Day: 13,
 Temperature: 36,
@@ -121,6 +121,16 @@ Temperature: 36.733,
 isDone: 1,
 isIllness: 0,
 
+Day: 21,
+Temperature: 36.67,
+isDone: 1,
+isIllness: 0,
+
+Day: 22,
+Temperature: 36.76,
+isDone: 1,
+isIllness: 0,
+
 Graph creation running...
 Horizontal lines generation running...
 Creating horizontal line on (100, 418, 900, 418)
@@ -131,76 +141,81 @@ Creating horizontal line on (100, 163.6, 900, 163.6)
 Horizontal lines generation ending...
 Vertical lines generation running...
 Creating vertical line on (900, 100, 900, 418)
-Creating vertical line on (860, 100, 860, 418)
-Creating vertical line on (820, 100, 820, 418)
-Creating vertical line on (780, 100, 780, 418)
-Creating vertical line on (740, 100, 740, 418)
-Creating vertical line on (700, 100, 700, 418)
-Creating vertical line on (660, 100, 660, 418)
-Creating vertical line on (620, 100, 620, 418)
-Creating vertical line on (580, 100, 580, 418)
-Creating vertical line on (540, 100, 540, 418)
+Creating vertical line on (863.63636363636, 100, 863.63636363636, 418)
+Creating vertical line on (827.27272727273, 100, 827.27272727273, 418)
+Creating vertical line on (790.90909090909, 100, 790.90909090909, 418)
+Creating vertical line on (754.54545454545, 100, 754.54545454545, 418)
+Creating vertical line on (718.18181818182, 100, 718.18181818182, 418)
+Creating vertical line on (681.81818181818, 100, 681.81818181818, 418)
+Creating vertical line on (645.45454545455, 100, 645.45454545455, 418)
+Creating vertical line on (609.09090909091, 100, 609.09090909091, 418)
+Creating vertical line on (572.72727272727, 100, 572.72727272727, 418)
+Creating vertical line on (536.36363636364, 100, 536.36363636364, 418)
 Creating vertical line on (500, 100, 500, 418)
-Creating vertical line on (460, 100, 460, 418)
-Creating vertical line on (420, 100, 420, 418)
-Creating vertical line on (380, 100, 380, 418)
-Creating vertical line on (340, 100, 340, 418)
-Creating vertical line on (300, 100, 300, 418)
-Creating vertical line on (260, 100, 260, 418)
-Creating vertical line on (220, 100, 220, 418)
-Creating vertical line on (180, 100, 180, 418)
-Creating vertical line on (140, 100, 140, 418)
-Creating vertical line on (100, 100, 100, 418)
+Creating vertical line on (463.63636363636, 100, 463.63636363636, 418)
+Creating vertical line on (427.27272727273, 100, 427.27272727273, 418)
+Creating vertical line on (390.90909090909, 100, 390.90909090909, 418)
+Creating vertical line on (354.54545454545, 100, 354.54545454545, 418)
+Creating vertical line on (318.18181818182, 100, 318.18181818182, 418)
+Creating vertical line on (281.81818181818, 100, 281.81818181818, 418)
+Creating vertical line on (245.45454545455, 100, 245.45454545455, 418)
+Creating vertical line on (209.09090909091, 100, 209.09090909091, 418)
+Creating vertical line on (172.72727272727, 100, 172.72727272727, 418)
+Creating vertical line on (136.36363636364, 100, 136.36363636364, 418)
 Vertical lines generation ending...
 'for' loop starting...
 'for' loop ending...
 generateMarkers running...
 
-Creating marker on (x: 140, y: 220.84)
-Creating marker on (x: 180, y: 276.49)
-Creating marker on (x: 220, y: 249.46)
-Creating marker on (x: 260, y: 315.604)
-Creating marker on (x: 300, y: 243.1)
-Creating marker on (x: 340, y: 330.55)
-Creating marker on (x: 380, y: 176.32)
-Creating marker on (x: 420, y: 418)
-Creating marker on (x: 460, y: 418)
-Creating marker on (x: 500, y: 189.04)
-Creating marker on (x: 540, y: 298.114)
-Creating marker on (x: 580, y: 418)
-Creating marker on (x: 620, y: 418)
-Creating marker on (x: 660, y: 418)
-Creating marker on (x: 700, y: 418)
-Creating marker on (x: 740, y: 418)
-Creating marker on (x: 780, y: 418)
-Creating marker on (x: 820, y: 418)
-Creating marker on (x: 860, y: 259)
-Creating marker on (x: 900, y: 184.906)
+Creating marker on (x: 136.36363636364, y: 220.84)
+Creating marker on (x: 172.72727272727, y: 244.69)
+Creating marker on (x: 209.09090909091, y: 280.624)
+Creating marker on (x: 245.45454545455, y: 232.924)
+Creating marker on (x: 281.81818181818, y: 243.1)
+Creating marker on (x: 318.18181818182, y: 235.468)
+Creating marker on (x: 354.54545454545, y: 418)
+Creating marker on (x: 390.90909090909, y: 418)
+Creating marker on (x: 427.27272727273, y: 418)
+Creating marker on (x: 463.63636363636, y: 192.22)
+Creating marker on (x: 500, y: 203.35)
+Creating marker on (x: 536.36363636364, y: 249.46)
+Creating marker on (x: 572.72727272727, y: 418)
+Creating marker on (x: 609.09090909091, y: 418)
+Creating marker on (x: 645.45454545455, y: 418)
+Creating marker on (x: 681.81818181818, y: 418)
+Creating marker on (x: 718.18181818182, y: 418)
+Creating marker on (x: 754.54545454545, y: 418)
+Creating marker on (x: 790.90909090909, y: 259)
+Creating marker on (x: 827.27272727273, y: 184.906)
+Creating marker on (x: 863.63636363636, y: 204.94)
+Creating marker on (x: 900, y: 176.32)
 
 generateMarkers ending...
 
 addMarkerLines running...
 
-Creating marker line on (x1: 140, y1: 220.84x2: 140, y2: 220.84)
-Creating marker line on (x1: 180, y1: 276.49x2: 180, y2: 276.49)
-Creating marker line on (x1: 220, y1: 249.46x2: 220, y2: 249.46)
-Creating marker line on (x1: 260, y1: 315.604x2: 260, y2: 315.604)
-Creating marker line on (x1: 300, y1: 243.1x2: 300, y2: 243.1)
-Creating marker line on (x1: 340, y1: 330.55x2: 340, y2: 330.55)
-Creating marker line on (x1: 380, y1: 176.32x2: 380, y2: 176.32)
-Creating marker line on (x1: 0, y1: 0x2: 0, y2: 0)
-Creating marker line on (x1: 0, y1: 0x2: 0, y2: 0)
-Creating marker line on (x1: 500, y1: 189.04x2: 500, y2: 189.04)
-Creating marker line on (x1: 540, y1: 298.114x2: 540, y2: 298.114)
+Creating marker line on (x1: 136.36363636364, y1: 220.84x2: 136.36363636364, y2: 220.84)
+Creating marker line on (x1: 172.72727272727, y1: 244.69x2: 172.72727272727, y2: 244.69)
+Creating marker line on (x1: 209.09090909091, y1: 280.624x2: 209.09090909091, y2: 280.624)
+Creating marker line on (x1: 245.45454545455, y1: 232.924x2: 245.45454545455, y2: 232.924)
+Creating marker line on (x1: 281.81818181818, y1: 243.1x2: 281.81818181818, y2: 243.1)
+Creating marker line on (x1: 318.18181818182, y1: 235.468x2: 318.18181818182, y2: 235.468)
 Creating marker line on (x1: 0, y1: 0x2: 0, y2: 0)
 Creating marker line on (x1: 0, y1: 0x2: 0, y2: 0)
 Creating marker line on (x1: 0, y1: 0x2: 0, y2: 0)
+Creating marker line on (x1: 463.63636363636, y1: 192.22x2: 463.63636363636, y2: 192.22)
+Creating marker line on (x1: 500, y1: 203.35x2: 500, y2: 203.35)
+Creating marker line on (x1: 536.36363636364, y1: 249.46x2: 536.36363636364, y2: 249.46)
 Creating marker line on (x1: 0, y1: 0x2: 0, y2: 0)
 Creating marker line on (x1: 0, y1: 0x2: 0, y2: 0)
 Creating marker line on (x1: 0, y1: 0x2: 0, y2: 0)
 Creating marker line on (x1: 0, y1: 0x2: 0, y2: 0)
-Creating marker line on (x1: 860, y1: 259x2: 860, y2: 259)
-Creating marker line on (x1: 900, y1: 184.906x2: 900, y2: 184.906)
+Creating marker line on (x1: 0, y1: 0x2: 0, y2: 0)
+Creating marker line on (x1: 0, y1: 0x2: 0, y2: 0)
+Creating marker line on (x1: 790.90909090909, y1: 259x2: 790.90909090909, y2: 259)
+Creating marker line on (x1: 827.27272727273, y1: 184.906x2: 827.27272727273, y2: 184.906)
+Creating marker line on (x1: 863.63636363636, y1: 204.94x2: 863.63636363636, y2: 204.94)
+Creating marker line on (x1: 900, y1: 176.32x2: 900, y2: 176.32)
 
 generateMarkers ending...
 
