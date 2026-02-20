@@ -110,7 +110,7 @@ $c = $dbh->exec("set names utf8");
                             <span class='graph-nav-text' id='graph-nav-text'>Wykres <?php echo $graphNo;?></span>
                             <button class='graph-nav-button' onclick='nextGraph(<?php echo $graphNo;?>)'>></button>
                         </div>
-                        <button class='add-button' onclick='addNewGraph(<?php echo $graphNo;?>)'>Dodaj nowy wykres</button>
+                        <button class='add-button' onclick='newGraphDialog()'>Dodaj nowy wykres</button>
                     </div>
                     <?php 
                     if(isset($_SESSION['userID'])) {
@@ -153,6 +153,21 @@ $c = $dbh->exec("set names utf8");
             </form>
             <form method='dialog' class='dialog-form'>
                 <button type='submit' class='form-button' id='editTemperatureClose'>Zamknij</button>
+            </form>
+        </div>
+    </dialog>
+    <dialog id='addNewGraphDialog' class='dialog-window'>
+        <div class='form-container'>
+            <form class='dialog-form' method='post' action='php/addgraph.php'>
+                <h2>Dodaj nowy wykres</h2>
+                <label for='addGraphName'>Nazwa wykresu</label>
+                <input type='text' name='graphName' id='addGraphName' class='form-input'>
+                <label for='addGraphDays'>Ilość dni w wykresie</label>
+                <input type='number' name='daysAmount' min='1' id='addGraphDays' class='form-input'>
+                <button type='submit' class='form-button'>Dodaj wykres</button>
+            </form>
+            <form method='dialog' class='dialog-form'>
+                <button type='submit' class='form-button' id='addGraphClose'>Zamknij</button>
             </form>
         </div>
     </dialog>

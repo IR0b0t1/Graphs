@@ -1,0 +1,4 @@
+daysAmount: 15,
+graphName: test2,
+graphNo: 3
+

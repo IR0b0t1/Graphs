@@ -110,3 +110,4 @@ foreach ($serverData as $row) {
 }
 
 echo "</map>";
+?>

@@ -255,5 +255,6 @@ fwrite($log, "generateMarkers ending...\n\n");
 //     imageline($im, 0, $y, $y, 1000, IMG_COLOR_STYLED);
 // }
 fwrite($log, "imagepng generation ended\n");
+fclose($log);
 imagepng($im);
 ?>

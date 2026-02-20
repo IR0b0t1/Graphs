@@ -1,0 +1,65 @@
+daysAmount: 10,
+graphName: TestGraph,
+graphNo: 3
+
+Day no. 1
+GraphID: 6
+Temperature: 36
+IsDone: 0
+IsIllness: 0
+
+Day no. 2
+GraphID: 6
+Temperature: 36
+IsDone: 0
+IsIllness: 0
+
+Day no. 3
+GraphID: 6
+Temperature: 36
+IsDone: 0
+IsIllness: 0
+
+Day no. 4
+GraphID: 6
+Temperature: 36
+IsDone: 0
+IsIllness: 0
+
+Day no. 5
+GraphID: 6
+Temperature: 36
+IsDone: 0
+IsIllness: 0
+
+Day no. 6
+GraphID: 6
+Temperature: 36
+IsDone: 0
+IsIllness: 0
+
+Day no. 7
+GraphID: 6
+Temperature: 36
+IsDone: 0
+IsIllness: 0
+
+Day no. 8
+GraphID: 6
+Temperature: 36
+IsDone: 0
+IsIllness: 0
+
+Day no. 9
+GraphID: 6
+Temperature: 36
+IsDone: 0
+IsIllness: 0
+
+Day no. 10
+GraphID: 6
+Temperature: 36
+IsDone: 0
+IsIllness: 0
+
+addgraph.php closes
