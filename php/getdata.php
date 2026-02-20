@@ -5,21 +5,31 @@ session_start();
 $width  = (int)$_GET['width'];
 $height = (int)$_GET['height'];
 $margin = (int)$_GET['margin'];
-$graphID = (int)$_GET['graphID'];
+$graphNo = (int)$_GET['graphNo'];
+$userID = $_SESSION['userID'];
+$graphID = 0;
+
+// echo "width: ".$width.", height: ".$height.", margin: ".$margin.", graphNo: ".$graphNo.", userID: ".$userID."<br>";
 
 $sql = "
-    SELECT Name FROM Graphs
-    WHERE ID = :id
+    SELECT ID FROM Graphs
+    WHERE UserID = :userID AND GraphNo = :graphNo
 ";
 
 $stmt = $dbh->prepare($sql);
-$stmt->bindParam(':id', $graphID, PDO::PARAM_INT);
+$stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+$stmt->bindParam(':graphNo', $graphNo, PDO::PARAM_INT);
 $stmt->execute();
-$serverData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$serverData = $stmt->fetchAll(PDO::FETCH_NUM); // DO NOT CHANGE, YOU WILL BREAK STUFF
 
-if(!isset($serverData['Name'])) {
-    echo "No graph with that ID";
+if(!isset($serverData[0])) {                                            // This is a mean check
+    echo "serverData[0] (ID): ". $serverData[0].", graphNo: ".$graphNo; // For some reason it works only when
+    //echo $graphID;                                                       we fetch num table and not assoc
+    echo "No graph with that ID";                                       // I am confused :)
     exit;
+} else {
+    $row = $serverData[0];
+    $graphID = $row[0];
 }
 
 $sql = "
@@ -28,7 +38,6 @@ $sql = "
     WHERE Graphs.ID = :id
       AND Graphs.UserID = :userID 
 ";
-
 $stmt = $dbh->prepare($sql);
 $stmt->bindParam(':id', $graphID, PDO::PARAM_INT);
 $stmt->bindParam(':userID', $_SESSION['userID'], PDO::PARAM_INT);
@@ -37,7 +46,7 @@ $serverData = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 foreach ($serverData as $row) {
     $days = $row['Days'];
-    echo $days;
+    // echo $days;
 }
 
 $sql = "
@@ -101,3 +110,4 @@ foreach ($serverData as $row) {
 }
 
 echo "</map>";
+?>

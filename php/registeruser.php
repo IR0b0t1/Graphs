@@ -8,7 +8,7 @@ if (!isset($_POST['emailregister'], $_POST['passwordregister'])) {
 $email = trim($_POST['emailregister']);
 $password = $_POST['passwordregister'];
 
-$log = fopen("debug.txt", "a");
+$log = fopen("../debug.txt", "a");
 
 $emailRegex = '/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/';
 if (!preg_match($emailRegex, $email)) {

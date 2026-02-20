@@ -10,7 +10,7 @@ $c = $dbh->exec("set names utf8");
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <link href='stylesheet/main.css' rel='stylesheet'>
-    <script type="module" src="javascript/main.js"></script>
+    <script type="module" src="javascript/main.js" defer></script>
     <title>Graphs</title>
 </head>
 
@@ -32,13 +32,27 @@ $c = $dbh->exec("set names utf8");
                             $stmt->bindParam(':id', $_SESSION['userID'], PDO::PARAM_INT);
                             $stmt->execute();
                             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
                             $row = $result[0];
                             $login = explode('@', $row['login'])[0];
+
                             echo "
                             <form action='php/signout.php'>
                                 <button class='logo-login'><!--<i class='fa-solid fa-gears'></i>--> {$login}</button>
                             </form>
                             ";
+
+                            $query = 'SELECT graphNo FROM graphs WHERE UserID = :id LIMIT 1';
+                            $stmt = $dbh->prepare($query);
+                            $stmt->bindParam(':id', $_SESSION['userID'], PDO::PARAM_INT);
+                            $stmt->execute();
+                            $result = $stmt->fetchAll(PDO::FETCH_NUM);
+                            $graphNo = $result[0][0];
+                            echo "<script>
+                                document.addEventListener('DOMContentLoaded', () => {
+                                    getData(".$graphNo.");
+                                });
+                                </script>";
                         }
                      ?>
                     
@@ -92,11 +106,11 @@ $c = $dbh->exec("set names utf8");
                     <div style='display: flex; justify-content: space-around; margin: 10px;'>
                         <button class='add-button' onclick='newRecordDialog()'>Dodaj pomiar</button>
                         <div class='graph-nav'>
-                            <button class='graph-nav-button' onclick='previousGraph()'><</button>
-                            <span class='graph-nav-text' id='graph-nav-text'>Wykres 1</span>
-                            <button class='graph-nav-button' onclick='nextGraph()'>></button>
+                            <button class='graph-nav-button' onclick='previousGraph(<?php echo $graphNo;?>)'><</button>
+                            <span class='graph-nav-text' id='graph-nav-text'>Wykres <?php echo $graphNo;?></span>
+                            <button class='graph-nav-button' onclick='nextGraph(<?php echo $graphNo;?>)'>></button>
                         </div>
-                        <button class='add-button' onclick='newGraphDialog()()'>Dodaj nowy wykres</button>
+                        <button class='add-button' onclick='newGraphDialog()'>Dodaj nowy wykres</button>
                     </div>
                     <?php 
                     if(isset($_SESSION['userID'])) {
@@ -115,14 +129,45 @@ $c = $dbh->exec("set names utf8");
     </div>
     <dialog id='addRecordDialog' class='dialog-window'>
         <div class='form-container'>
-            <form method='post' action='php/addrecord.php' class='dialog-form'>
+            <form class='dialog-form'>
                 <h2>Dodaj nowy dzień</h2>
                 <label for='temperature-new'>Temperatura</label>
-                <input class='form-input' type='number' id='temperature-new' name='temperature-new'>
-                <button type='submit' class='form-button'>Dodaj nową temperaturę</button>
-                <button type='button' class='form-button'>Choroba</button>
-                <button type='button' class='form-button' onclick='addRecord()'>Brak pomiaru</button>
+                <input class='form-input' type='number' id='temperatureNew' name='temperature-new' min='36' max='37'>
+                <button type='button' class='form-button' onclick='addRecord(<?php echo $graphNo?>)'>Dodaj dzień</button>
+                <button type='button' class='form-button' onclick='addIllness(<?php echo $graphNo?>)'>Choroba</button>
+                <button type='button' class='form-button' onclick='addNotDone(<?php echo $graphNo?>)'>Brak pomiaru</button>
                 <button type='button' class='form-button' onclick='document.getElementById("addRecordDialog").close()'>Zamknij</button>
+            </form>
+        </div>
+    </dialog>
+    <dialog id='editTemperatureDialog' class='dialog-window'>
+        <div class='form-container'>
+            <form class='dialog-form'>
+                <h2>Edytuj dzień</h2>
+                <label id='dayLabel' for='editTemperatureInput'></label>
+                <input type='number' name='temperature-change' id='editTemperatureInput' class='form-input' min='36' max='37'>
+                <input type='hidden' name='temperature-graphno'id='editTemperatureGraphNo' <?php echo "value='".$graphNo."'";?>>
+                <button type='button' class='form-button' id='editTemperatureSave'>Zapisz temperaturę</button>
+                <button type='button' class='form-button' id='editTemperatureIll'>Choroba</button>
+                <button type='button' class='form-button' id='editTemperatureNoData'>Brak pomiaru</button>
+            </form>
+            <form method='dialog' class='dialog-form'>
+                <button type='submit' class='form-button' id='editTemperatureClose'>Zamknij</button>
+            </form>
+        </div>
+    </dialog>
+    <dialog id='addNewGraphDialog' class='dialog-window'>
+        <div class='form-container'>
+            <form class='dialog-form' method='post' action='php/addgraph.php'>
+                <h2>Dodaj nowy wykres</h2>
+                <label for='addGraphName'>Nazwa wykresu</label>
+                <input type='text' name='graphName' id='addGraphName' class='form-input'>
+                <label for='addGraphDays'>Ilość dni w wykresie</label>
+                <input type='number' name='daysAmount' min='1' id='addGraphDays' class='form-input'>
+                <button type='submit' class='form-button'>Dodaj wykres</button>
+            </form>
+            <form method='dialog' class='dialog-form'>
+                <button type='submit' class='form-button' id='addGraphClose'>Zamknij</button>
             </form>
         </div>
     </dialog>

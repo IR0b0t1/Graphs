@@ -5,12 +5,34 @@ header('Content-Type: image/png');
 session_start();
 $c=$dbh->exec("set names utf8");
 $data = array();
+$log = fopen("imageDebug.txt", "w");
 
 // Zmienne
 $width = $_GET['width'];
 $height = $_GET['height'];
 $margin = $_GET['margin'];
-$days = $_GET['days'];
+$graphNo = $_GET['graphNo'];
+$userID  = (int)$_SESSION['userID'];
+
+$sql = "SELECT ID FROM Graphs
+        WHERE UserID = :userID AND GraphNo = :graphNo";
+
+$stmt = $dbh->prepare($sql);
+$stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+$stmt->bindParam(':graphNo', $graphNo, PDO::PARAM_INT);
+$stmt->execute();
+$serverData = $stmt->fetchAll(PDO::FETCH_NUM);
+$graphID = $serverData[0][0];
+
+$sql = "SELECT COUNT(ID) FROM temperature
+        WHERE GraphID = :graphID";
+
+$stmt = $dbh->prepare($sql);
+$stmt->bindParam(':graphID', $graphID, PDO::PARAM_INT);
+$stmt->execute();
+$serverData = $stmt->fetchAll(PDO::FETCH_NUM);
+$days = $serverData[0][0];
+
 $minTemp = 36.0;
 $maxTemp = 37.0;
 $temp = 36.0;
@@ -18,6 +40,8 @@ $lineNumber = 0;
 $place = $width-105;
 $lineMarginsHorizontal = ($height - 2 * $margin)/5;
 $lineMarginsVertical = ($width - 2 * $margin)/$days;
+
+fwrite($log, "width: $width,\nheight: $height,\nmargin: $margin,\ndays: $days,\ngraphNo: $graphNo,\ngraphID: $graphID,\nuserID: $userID,\nminTemp: $minTemp,\nmaxTemp: $maxTemp,\ntemp: $temp,\nlineNumber: $lineNumber,\nplace: $place,\nlineMarginsHorizontal: $lineMarginsHorizontal,\nlineMarginsVertical: $lineMarginsVertical\n");
 
 // Klasa Day do ogarniania poszczególnych dni w bazie danych
 class Day {
@@ -64,9 +88,8 @@ $dataQuery = "
     WHERE Graphs.ID = :id AND Graphs.UserID = :userID
     ORDER BY Temperature.Day ASC
 ";
+fwrite($log, "$dataQuery\n");
 
-$graphID = isset($_SESSION['id']) ? (int)$_SESSION['id'] : 1;
-$userID  = isset($_SESSION['userID']) ? (int)$_SESSION['userID'] : 1;
 $dataStmt = $dbh->prepare($dataQuery);
 $dataStmt->bindParam(':id', $graphID, PDO::PARAM_INT);
 $dataStmt->bindParam(':userID', $userID, PDO::PARAM_INT);
@@ -81,6 +104,7 @@ for($i=0;$i<$days;$i++) {
         $databaseData->set_temperature($serverData[$i]['Temperature']);
         $databaseData->set_isDone($serverData[$i]['isDone']);
         $databaseData->set_isIllness($serverData[$i]['isIllness']);
+        fwrite($log, "Day: " . $serverData[$i]['Day'] . ",\nTemperature: " . $serverData[$i]['Temperature'] . ",\nisDone: " . $serverData[$i]['isDone'] . ",\nisIllness: " . $serverData[$i]['isIllness'] . ",\n\n");
         $data[] = $databaseData;
     } else {
         // echo "don't exists<br>";
@@ -110,7 +134,7 @@ function calculateY($margin, $height, $temperature, $isIllness, $isDone) {
 
 // niesamowity generator markerów
 function generateMarkers($im, $data) {
-    global $days, $id, $temperature, $isDone, $isIllness, $margin, $width, $height;
+    global $days, $id, $temperature, $isDone, $isIllness, $margin, $width, $height, $log;
 
     for($j=0;$j<count($data);$j++) {
         $markerID = $data[$j]->get_day();
@@ -128,13 +152,15 @@ function generateMarkers($im, $data) {
             $color = imagecolorallocate($im, 255, 0, 0);
         }
         imagefilledellipse($im, $x, $y, 9, 9, $color);
+        fwrite($log, "Creating marker on (x: $x, y: $y)\n");
     }
+    fwrite($log, "\n");
 }
 
 // Niesamowity generator linii
 function addMarkerLines($im, $data) {
     $blue = imagecolorallocate($im, 0, 0, 255);
-    global $days, $id, $temperature, $isDone, $isIllness, $margin, $width, $height;
+    global $days, $id, $temperature, $isDone, $isIllness, $margin, $width, $height, $log;
     
     $x1 = 0;
     $y1 = 0;
@@ -158,7 +184,9 @@ function addMarkerLines($im, $data) {
             $x2 = 0;
             $y2 = 0;
         }
+        fwrite($log, "Creating marker line on (x1: " . $x1 . ", y1: " . $y1 . "x2: " . $x2 . ", y2: " . $y2 .")\n");
     }
+    fwrite($log, "\n");
 }
 
 // Cała reszta
@@ -174,25 +202,40 @@ imagefilledrectangle($im, 0, 0, $width, $height, $white);
 imagestringup($im, 5, 25, $height/2, "Temperatura", $bk);
 imagestring($im, 5, $width/2-50, $height-75, "Dzien pomiaru", $bk);
 
+fwrite($log, "Graph creation running...\n");
+fwrite($log, "Horizontal lines generation running...\n");
+// Horizontal lines generation (probably)
 for ($x = $height-$margin; $x >= $margin; $x-=$lineMarginsHorizontal) {
     imagesetstyle($im, $grayLine);
     imageline($im, 100, $x, $width-100, $x, IMG_COLOR_STYLED);
     imagestring($im, 5, 50, $x-10, $temp, $bk);
     $temp += .2;
+    fwrite($log, "Creating horizontal line on (100, " . $x . ", " . $width-100 . ", " . $x .")\n");
 }
-
+fwrite($log, "Horizontal lines generation ending...\n");
+fwrite($log, "Vertical lines generation running...\n");
+// Vertical lines generation (probably)
 for ($y = $width-$margin; $y >= $margin; $y-=$lineMarginsVertical) {
     imagesetstyle($im, $grayLine);
     imageline($im, $y, 100, $y, $height-100, IMG_COLOR_STYLED);
     $lineNumber++;
+    fwrite($log, "Creating vertical line on (".$y.", 100, " . $y . ", " . $height-100 .")\n");
 }
+fwrite($log, "Vertical lines generation ending...\n");
 
+// No idea
+fwrite($log, "'for' loop starting...\n");
 for ($z = $days; $z>=1; $z--){
     imagestring($im, 5, $place, $height-90, $z, $bk);
     $place -= $lineMarginsVertical;
 }
+fwrite($log, "'for' loop ending...\n");
+fwrite($log, "generateMarkers running...\n\n");
 generateMarkers($im, $data);
+fwrite($log, "generateMarkers ending...\n\n");
+fwrite($log, "addMarkerLines running...\n\n");
 addMarkerLines($im, $data);
+fwrite($log, "generateMarkers ending...\n\n");
 
 // To robi śmieszne kreseczki
 // for ($y = 0; $y <= $width; $y+=1) {
@@ -211,6 +254,7 @@ addMarkerLines($im, $data);
 //     imagesetstyle($im, $grayLine);
 //     imageline($im, 0, $y, $y, 1000, IMG_COLOR_STYLED);
 // }
-
+fwrite($log, "imagepng generation ended\n");
+fclose($log);
 imagepng($im);
 ?>

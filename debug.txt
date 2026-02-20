@@ -1,5 +1,38 @@
-register.php: New user registered successfully.
-register.php: New user registered successfully.
-Login.php: This email is already registered.
-User registered successfully: bboner@egzorcysta.pl
-User logged successfully: bboner@egzorcysta.pl
+width: 1000,
+height: 486,
+margin: 100,
+days: 20,
+graphID: 1,
+userID: 1,
+minTemp: 36,
+maxTemp: 37,
+temp: 36,
+lineNumber: 0,
+place: 895,
+lineMarginsHorizontal: 57.2,
+lineMarginsVertical: 40
+
+    SELECT
+        Temperature.ID, Temperature.Day, Temperature.Temperature,
+        Temperature.isDone, Temperature.isIllness
+    FROM Temperature
+    INNER JOIN Graphs ON Graphs.ID = Temperature.GraphID
+    WHERE Graphs.ID = :id AND Graphs.UserID = :userID
+    ORDER BY Temperature.Day ASC
+
+
+User has 1 graphs
+Session data - user ID: 1, graphs amount: 1
+User logged successfully: admin@gmail.com
+User has 1 graphs
+Session data - user ID: 1, graphs amount: 1
+User logged successfully: admin@gmail.com
+User has 1 graphs
+Session data - user ID: 1, graphs amount: 1
+User logged successfully: admin@gmail.com
+User has 1 graphs
+Session data - user ID: 1, graphs amount: 1
+User logged successfully: admin@gmail.com
+User has 1 graphs
+Session data - user ID: 1, graphs amount: 1
+User logged successfully: admin@gmail.com

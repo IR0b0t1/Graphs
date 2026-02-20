@@ -1,0 +1,263 @@
+width: 1300,
+height: 518,
+margin: 100,
+days: 27,
+graphNo: 1,
+graphID: 1,
+userID: 1,
+minTemp: 36,
+maxTemp: 37,
+temp: 36,
+lineNumber: 0,
+place: 1195,
+lineMarginsHorizontal: 63.6,
+lineMarginsVertical: 40.740740740741
+
+    SELECT
+        Temperature.ID, Temperature.Day, Temperature.Temperature,
+        Temperature.isDone, Temperature.isIllness
+    FROM Temperature
+    INNER JOIN Graphs ON Graphs.ID = Temperature.GraphID
+    WHERE Graphs.ID = :id AND Graphs.UserID = :userID
+    ORDER BY Temperature.Day ASC
+
+Day: 1,
+Temperature: 36.62,
+isDone: 1,
+isIllness: 0,
+
+Day: 2,
+Temperature: 36.545,
+isDone: 1,
+isIllness: 0,
+
+Day: 3,
+Temperature: 36.432,
+isDone: 1,
+isIllness: 0,
+
+Day: 4,
+Temperature: 36.582,
+isDone: 1,
+isIllness: 0,
+
+Day: 5,
+Temperature: 36.55,
+isDone: 1,
+isIllness: 0,
+
+Day: 6,
+Temperature: 36.574,
+isDone: 1,
+isIllness: 0,
+
+Day: 7,
+Temperature: 36.65,
+isDone: 1,
+isIllness: 1,
+
+Day: 8,
+Temperature: 36.71,
+isDone: 1,
+isIllness: 1,
+
+Day: 9,
+Temperature: 36.623,
+isDone: 1,
+isIllness: 1,
+
+Day: 10,
+Temperature: 36.71,
+isDone: 1,
+isIllness: 0,
+
+Day: 11,
+Temperature: 36.675,
+isDone: 1,
+isIllness: 0,
+
+Day: 12,
+Temperature: 36.53,
+isDone: 1,
+isIllness: 0,
+
+Day: 13,
+Temperature: 36,
+isDone: 0,
+isIllness: 0,
+
+Day: 14,
+Temperature: 36,
+isDone: 0,
+isIllness: 0,
+
+Day: 15,
+Temperature: 36,
+isDone: 0,
+isIllness: 0,
+
+Day: 16,
+Temperature: 36.7,
+isDone: 1,
+isIllness: 1,
+
+Day: 17,
+Temperature: 36.7,
+isDone: 1,
+isIllness: 1,
+
+Day: 18,
+Temperature: 36.7,
+isDone: 1,
+isIllness: 1,
+
+Day: 19,
+Temperature: 36.5,
+isDone: 1,
+isIllness: 1,
+
+Day: 20,
+Temperature: 36.533,
+isDone: 1,
+isIllness: 1,
+
+Day: 21,
+Temperature: 36.67,
+isDone: 1,
+isIllness: 0,
+
+Day: 22,
+Temperature: 36.76,
+isDone: 1,
+isIllness: 0,
+
+Day: 23,
+Temperature: 36.66,
+isDone: 1,
+isIllness: 0,
+
+Day: 24,
+Temperature: 36.678,
+isDone: 1,
+isIllness: 0,
+
+Day: 25,
+Temperature: 36.765,
+isDone: 1,
+isIllness: 0,
+
+Day: 26,
+Temperature: 36.7,
+isDone: 1,
+isIllness: 0,
+
+Day: 27,
+Temperature: 36.587,
+isDone: 1,
+isIllness: 0,
+
+Graph creation running...
+Horizontal lines generation running...
+Creating horizontal line on (100, 418, 1200, 418)
+Creating horizontal line on (100, 354.4, 1200, 354.4)
+Creating horizontal line on (100, 290.8, 1200, 290.8)
+Creating horizontal line on (100, 227.2, 1200, 227.2)
+Creating horizontal line on (100, 163.6, 1200, 163.6)
+Horizontal lines generation ending...
+Vertical lines generation running...
+Creating vertical line on (1200, 100, 1200, 418)
+Creating vertical line on (1159.2592592593, 100, 1159.2592592593, 418)
+Creating vertical line on (1118.5185185185, 100, 1118.5185185185, 418)
+Creating vertical line on (1077.7777777778, 100, 1077.7777777778, 418)
+Creating vertical line on (1037.037037037, 100, 1037.037037037, 418)
+Creating vertical line on (996.2962962963, 100, 996.2962962963, 418)
+Creating vertical line on (955.55555555556, 100, 955.55555555556, 418)
+Creating vertical line on (914.81481481482, 100, 914.81481481482, 418)
+Creating vertical line on (874.07407407407, 100, 874.07407407407, 418)
+Creating vertical line on (833.33333333333, 100, 833.33333333333, 418)
+Creating vertical line on (792.59259259259, 100, 792.59259259259, 418)
+Creating vertical line on (751.85185185185, 100, 751.85185185185, 418)
+Creating vertical line on (711.11111111111, 100, 711.11111111111, 418)
+Creating vertical line on (670.37037037037, 100, 670.37037037037, 418)
+Creating vertical line on (629.62962962963, 100, 629.62962962963, 418)
+Creating vertical line on (588.88888888889, 100, 588.88888888889, 418)
+Creating vertical line on (548.14814814815, 100, 548.14814814815, 418)
+Creating vertical line on (507.40740740741, 100, 507.40740740741, 418)
+Creating vertical line on (466.66666666667, 100, 466.66666666667, 418)
+Creating vertical line on (425.92592592593, 100, 425.92592592593, 418)
+Creating vertical line on (385.18518518519, 100, 385.18518518519, 418)
+Creating vertical line on (344.44444444444, 100, 344.44444444444, 418)
+Creating vertical line on (303.7037037037, 100, 303.7037037037, 418)
+Creating vertical line on (262.96296296296, 100, 262.96296296296, 418)
+Creating vertical line on (222.22222222222, 100, 222.22222222222, 418)
+Creating vertical line on (181.48148148148, 100, 181.48148148148, 418)
+Creating vertical line on (140.74074074074, 100, 140.74074074074, 418)
+Creating vertical line on (100, 100, 100, 418)
+Vertical lines generation ending...
+'for' loop starting...
+'for' loop ending...
+generateMarkers running...
+
+Creating marker on (x: 140.74074074074, y: 220.84)
+Creating marker on (x: 181.48148148148, y: 244.69)
+Creating marker on (x: 222.22222222222, y: 280.624)
+Creating marker on (x: 262.96296296296, y: 232.924)
+Creating marker on (x: 303.7037037037, y: 243.1)
+Creating marker on (x: 344.44444444444, y: 235.468)
+Creating marker on (x: 385.18518518519, y: 418)
+Creating marker on (x: 425.92592592593, y: 418)
+Creating marker on (x: 466.66666666667, y: 418)
+Creating marker on (x: 507.40740740741, y: 192.22)
+Creating marker on (x: 548.14814814815, y: 203.35)
+Creating marker on (x: 588.88888888889, y: 249.46)
+Creating marker on (x: 629.62962962963, y: 418)
+Creating marker on (x: 670.37037037037, y: 418)
+Creating marker on (x: 711.11111111111, y: 418)
+Creating marker on (x: 751.85185185185, y: 418)
+Creating marker on (x: 792.59259259259, y: 418)
+Creating marker on (x: 833.33333333333, y: 418)
+Creating marker on (x: 874.07407407407, y: 418)
+Creating marker on (x: 914.81481481481, y: 418)
+Creating marker on (x: 955.55555555556, y: 204.94)
+Creating marker on (x: 996.2962962963, y: 176.32)
+Creating marker on (x: 1037.037037037, y: 208.12)
+Creating marker on (x: 1077.7777777778, y: 202.396)
+Creating marker on (x: 1118.5185185185, y: 174.73)
+Creating marker on (x: 1159.2592592593, y: 195.4)
+Creating marker on (x: 1200, y: 231.334)
+
+generateMarkers ending...
+
+addMarkerLines running...
+
+Creating marker line on (x1: 140.74074074074, y1: 220.84x2: 140.74074074074, y2: 220.84)
+Creating marker line on (x1: 181.48148148148, y1: 244.69x2: 181.48148148148, y2: 244.69)
+Creating marker line on (x1: 222.22222222222, y1: 280.624x2: 222.22222222222, y2: 280.624)
+Creating marker line on (x1: 262.96296296296, y1: 232.924x2: 262.96296296296, y2: 232.924)
+Creating marker line on (x1: 303.7037037037, y1: 243.1x2: 303.7037037037, y2: 243.1)
+Creating marker line on (x1: 344.44444444444, y1: 235.468x2: 344.44444444444, y2: 235.468)
+Creating marker line on (x1: 0, y1: 0x2: 0, y2: 0)
+Creating marker line on (x1: 0, y1: 0x2: 0, y2: 0)
+Creating marker line on (x1: 0, y1: 0x2: 0, y2: 0)
+Creating marker line on (x1: 507.40740740741, y1: 192.22x2: 507.40740740741, y2: 192.22)
+Creating marker line on (x1: 548.14814814815, y1: 203.35x2: 548.14814814815, y2: 203.35)
+Creating marker line on (x1: 588.88888888889, y1: 249.46x2: 588.88888888889, y2: 249.46)
+Creating marker line on (x1: 0, y1: 0x2: 0, y2: 0)
+Creating marker line on (x1: 0, y1: 0x2: 0, y2: 0)
+Creating marker line on (x1: 0, y1: 0x2: 0, y2: 0)
+Creating marker line on (x1: 0, y1: 0x2: 0, y2: 0)
+Creating marker line on (x1: 0, y1: 0x2: 0, y2: 0)
+Creating marker line on (x1: 0, y1: 0x2: 0, y2: 0)
+Creating marker line on (x1: 0, y1: 0x2: 0, y2: 0)
+Creating marker line on (x1: 0, y1: 0x2: 0, y2: 0)
+Creating marker line on (x1: 955.55555555556, y1: 204.94x2: 955.55555555556, y2: 204.94)
+Creating marker line on (x1: 996.2962962963, y1: 176.32x2: 996.2962962963, y2: 176.32)
+Creating marker line on (x1: 1037.037037037, y1: 208.12x2: 1037.037037037, y2: 208.12)
+Creating marker line on (x1: 1077.7777777778, y1: 202.396x2: 1077.7777777778, y2: 202.396)
+Creating marker line on (x1: 1118.5185185185, y1: 174.73x2: 1118.5185185185, y2: 174.73)
+Creating marker line on (x1: 1159.2592592593, y1: 195.4x2: 1159.2592592593, y2: 195.4)
+Creating marker line on (x1: 1200, y1: 231.334x2: 1200, y2: 231.334)
+
+generateMarkers ending...
+
+imagepng generation ended

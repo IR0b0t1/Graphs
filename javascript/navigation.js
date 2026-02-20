@@ -22,83 +22,41 @@ let isIllness = false;
 let isDone = false;
 let id = 0;
 
-const dialog = document.createElement('dialog');
-dialog.className = 'dialog-window';
-dialog.id = 'temperatureDialog';
+const dialog = document.getElementById('editTemperatureDialog');
+const dayLabel = document.getElementById('dayLabel');
+const saveButton = document.getElementById('editTemperatureSave');
+const illButton = document.getElementById('editTemperatureIll');
+const noDataButton = document.getElementById('editTemperatureNoData');
+const temperatureInput = document.getElementById('editTemperatureInput');
+const graphNo = document.getElementById('editTemperatureGraphNo').value;
 
-const formContainer = document.createElement('div');
-formContainer.className = 'form-container';
-
-const editForm = document.createElement('form');
-editForm.method = 'POST';
-editForm.className = 'dialog-form';
-
-const header = document.createElement('h2');
-header.innerText = 'Edytuj dzień';
-
-const dayLabel = document.createElement('label');
-
-const temperatureInput = document.createElement('input');
-temperatureInput.className = 'form-input';
-temperatureInput.name = 'temperature-change';
-temperatureInput.type = 'number';
-temperatureInput.min = 36;
-temperatureInput.max = 37;
-
-const saveButton = document.createElement('button');
-saveButton.className = 'form-button';
-saveButton.innerText = 'Zapisz temperaturę';
-
-const illButton = document.createElement('button');
-illButton.className = 'form-button';
-illButton.innerText = 'Choroba';
-
-const noDataButton = document.createElement('button');
-noDataButton.className = 'form-button';
-noDataButton.innerText = 'Brak pomiaru';
-
+console.log()
 saveButton.addEventListener('click', async (e) => {
+    console.log("saveButton eventListener called...");
+    console.log(`graphNo = ${graphNo}`);
     e.preventDefault();
-    await updateData(day, temperatureInput.value, false, true);
+    await updateData(graphNo, day, temperatureInput.value, false, true);
     dialog.close();
-    getData();
+    getData(graphNo);
 });
 
 illButton.addEventListener('click', async (e) => {
+    console.log("illButton eventListener called...");
+    console.log(`graphNo = ${graphNo}`);
     e.preventDefault();
-    await updateData(day, temperatureInput.value, true, true);
+    await updateData(graphNo, day, temperatureInput.value, true, true);
     dialog.close();
-    getData();
+    getData(graphNo);
 });
 
 noDataButton.addEventListener('click', async (e) => {
+    console.log("noDataButton eventListener called...");
+    console.log(`graphNo = ${graphNo}`);
     e.preventDefault();
-    await updateData(day, 0, false, false);
+    await updateData(graphNo, day, 0, false, false);
     dialog.close();
-    getData();
+    getData(graphNo);
 });
-
-const closeForm = document.createElement('form');
-closeForm.method = 'dialog';
-closeForm.className = 'dialog-form';
-
-const closeButton = document.createElement('button');
-closeButton.className = 'form-button';
-closeButton.innerText = 'Zamknij';
-
-editForm.append(
-    header,
-    dayLabel,
-    temperatureInput,
-    saveButton,
-    illButton,
-    noDataButton
-);
-
-closeForm.appendChild(closeButton);
-formContainer.append(editForm, closeForm);
-dialog.appendChild(formContainer);
-document.body.appendChild(dialog);
 
 export const nodeClicked = (
     clickedDay,
@@ -107,7 +65,7 @@ export const nodeClicked = (
     clickedIsDone,
     clickedId
 ) => {
-    console.log('Click');
+    console.log('nodeClicked called...');
 
     day = clickedDay;
     temperature = clickedTemperature;

@@ -8,7 +8,7 @@ if (!isset($_POST['emaillogin'], $_POST['passwordlogin'])) {
 
 $email = trim($_POST['emaillogin']);
 $password = $_POST['passwordlogin'];
-$log = fopen("debug.txt", "a");
+$log = fopen("../debug.txt", "a");
 
 $sql = "SELECT ID, Password FROM Users WHERE Login = :email LIMIT 1";
 $stmt = $dbh->prepare($sql);

@@ -1,0 +1,3 @@
+daysAmount: 23,
+graphName: testvar,
+graphNo: 2
