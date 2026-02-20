@@ -10,7 +10,7 @@ export const getData = async (graphNo) => {
     console.log('Deleting inner HTML in container');
     container.innerHTML = '';
 
-    const height = window.innerHeight - 300;
+    const height = window.innerHeight - 320;
 
     console.log('Adding image to container');
     container.innerHTML += `
@@ -34,8 +34,9 @@ export const getData = async (graphNo) => {
     console.log('Fetching data complete');
 };
 
-export const updateData = async (day, temperature, isIllness, isDone) => {
+export const updateData = async (graphNo, day, temperature, isIllness, isDone) => {
     await fetch(
         `php/postdata.php?day=${day}&temperature=${temperature}&isIllness=${isIllness}&isDone=${isDone}`
-    );
+    )
+        .then(getData(graphNo));
 };

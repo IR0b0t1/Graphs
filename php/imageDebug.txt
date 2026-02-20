@@ -1,5 +1,5 @@
 width: 1000,
-height: 538,
+height: 518,
 margin: 100,
 days: 20,
 graphNo: 1,
@@ -10,7 +10,7 @@ maxTemp: 37,
 temp: 36,
 lineNumber: 0,
 place: 895,
-lineMarginsHorizontal: 67.6,
+lineMarginsHorizontal: 63.6,
 lineMarginsVertical: 40
 
     SELECT
@@ -123,84 +123,84 @@ isIllness: 0,
 
 Graph creation running...
 Horizontal lines generation running...
-Creating horizontal line on (100, 438, 900, 438)
-Creating horizontal line on (100, 370.4, 900, 370.4)
-Creating horizontal line on (100, 302.8, 900, 302.8)
-Creating horizontal line on (100, 235.2, 900, 235.2)
-Creating horizontal line on (100, 167.6, 900, 167.6)
+Creating horizontal line on (100, 418, 900, 418)
+Creating horizontal line on (100, 354.4, 900, 354.4)
+Creating horizontal line on (100, 290.8, 900, 290.8)
+Creating horizontal line on (100, 227.2, 900, 227.2)
+Creating horizontal line on (100, 163.6, 900, 163.6)
 Horizontal lines generation ending...
 Vertical lines generation running...
-Creating vertical line on (900, 100, 900, 438)
-Creating vertical line on (860, 100, 860, 438)
-Creating vertical line on (820, 100, 820, 438)
-Creating vertical line on (780, 100, 780, 438)
-Creating vertical line on (740, 100, 740, 438)
-Creating vertical line on (700, 100, 700, 438)
-Creating vertical line on (660, 100, 660, 438)
-Creating vertical line on (620, 100, 620, 438)
-Creating vertical line on (580, 100, 580, 438)
-Creating vertical line on (540, 100, 540, 438)
-Creating vertical line on (500, 100, 500, 438)
-Creating vertical line on (460, 100, 460, 438)
-Creating vertical line on (420, 100, 420, 438)
-Creating vertical line on (380, 100, 380, 438)
-Creating vertical line on (340, 100, 340, 438)
-Creating vertical line on (300, 100, 300, 438)
-Creating vertical line on (260, 100, 260, 438)
-Creating vertical line on (220, 100, 220, 438)
-Creating vertical line on (180, 100, 180, 438)
-Creating vertical line on (140, 100, 140, 438)
-Creating vertical line on (100, 100, 100, 438)
+Creating vertical line on (900, 100, 900, 418)
+Creating vertical line on (860, 100, 860, 418)
+Creating vertical line on (820, 100, 820, 418)
+Creating vertical line on (780, 100, 780, 418)
+Creating vertical line on (740, 100, 740, 418)
+Creating vertical line on (700, 100, 700, 418)
+Creating vertical line on (660, 100, 660, 418)
+Creating vertical line on (620, 100, 620, 418)
+Creating vertical line on (580, 100, 580, 418)
+Creating vertical line on (540, 100, 540, 418)
+Creating vertical line on (500, 100, 500, 418)
+Creating vertical line on (460, 100, 460, 418)
+Creating vertical line on (420, 100, 420, 418)
+Creating vertical line on (380, 100, 380, 418)
+Creating vertical line on (340, 100, 340, 418)
+Creating vertical line on (300, 100, 300, 418)
+Creating vertical line on (260, 100, 260, 418)
+Creating vertical line on (220, 100, 220, 418)
+Creating vertical line on (180, 100, 180, 418)
+Creating vertical line on (140, 100, 140, 418)
+Creating vertical line on (100, 100, 100, 418)
 Vertical lines generation ending...
 'for' loop starting...
 'for' loop ending...
 generateMarkers running...
 
-Creating marker on (x: 140, y: 228.44)
-Creating marker on (x: 180, y: 287.59)
-Creating marker on (x: 220, y: 258.86)
-Creating marker on (x: 260, y: 329.164)
-Creating marker on (x: 300, y: 252.1)
-Creating marker on (x: 340, y: 345.05)
-Creating marker on (x: 380, y: 181.12)
-Creating marker on (x: 420, y: 438)
-Creating marker on (x: 460, y: 438)
-Creating marker on (x: 500, y: 194.64)
-Creating marker on (x: 540, y: 310.574)
-Creating marker on (x: 580, y: 438)
-Creating marker on (x: 620, y: 438)
-Creating marker on (x: 660, y: 438)
-Creating marker on (x: 700, y: 438)
-Creating marker on (x: 740, y: 438)
-Creating marker on (x: 780, y: 438)
-Creating marker on (x: 820, y: 438)
-Creating marker on (x: 860, y: 269)
-Creating marker on (x: 900, y: 190.246)
+Creating marker on (x: 140, y: 220.84)
+Creating marker on (x: 180, y: 276.49)
+Creating marker on (x: 220, y: 249.46)
+Creating marker on (x: 260, y: 315.604)
+Creating marker on (x: 300, y: 243.1)
+Creating marker on (x: 340, y: 330.55)
+Creating marker on (x: 380, y: 176.32)
+Creating marker on (x: 420, y: 418)
+Creating marker on (x: 460, y: 418)
+Creating marker on (x: 500, y: 189.04)
+Creating marker on (x: 540, y: 298.114)
+Creating marker on (x: 580, y: 418)
+Creating marker on (x: 620, y: 418)
+Creating marker on (x: 660, y: 418)
+Creating marker on (x: 700, y: 418)
+Creating marker on (x: 740, y: 418)
+Creating marker on (x: 780, y: 418)
+Creating marker on (x: 820, y: 418)
+Creating marker on (x: 860, y: 259)
+Creating marker on (x: 900, y: 184.906)
 
 generateMarkers ending...
 
 addMarkerLines running...
 
-Creating marker line on (x1: 140, y1: 228.44x2: 140, y2: 228.44)
-Creating marker line on (x1: 180, y1: 287.59x2: 180, y2: 287.59)
-Creating marker line on (x1: 220, y1: 258.86x2: 220, y2: 258.86)
-Creating marker line on (x1: 260, y1: 329.164x2: 260, y2: 329.164)
-Creating marker line on (x1: 300, y1: 252.1x2: 300, y2: 252.1)
-Creating marker line on (x1: 340, y1: 345.05x2: 340, y2: 345.05)
-Creating marker line on (x1: 380, y1: 181.12x2: 380, y2: 181.12)
+Creating marker line on (x1: 140, y1: 220.84x2: 140, y2: 220.84)
+Creating marker line on (x1: 180, y1: 276.49x2: 180, y2: 276.49)
+Creating marker line on (x1: 220, y1: 249.46x2: 220, y2: 249.46)
+Creating marker line on (x1: 260, y1: 315.604x2: 260, y2: 315.604)
+Creating marker line on (x1: 300, y1: 243.1x2: 300, y2: 243.1)
+Creating marker line on (x1: 340, y1: 330.55x2: 340, y2: 330.55)
+Creating marker line on (x1: 380, y1: 176.32x2: 380, y2: 176.32)
 Creating marker line on (x1: 0, y1: 0x2: 0, y2: 0)
 Creating marker line on (x1: 0, y1: 0x2: 0, y2: 0)
-Creating marker line on (x1: 500, y1: 194.64x2: 500, y2: 194.64)
-Creating marker line on (x1: 540, y1: 310.574x2: 540, y2: 310.574)
-Creating marker line on (x1: 0, y1: 0x2: 0, y2: 0)
-Creating marker line on (x1: 0, y1: 0x2: 0, y2: 0)
-Creating marker line on (x1: 0, y1: 0x2: 0, y2: 0)
+Creating marker line on (x1: 500, y1: 189.04x2: 500, y2: 189.04)
+Creating marker line on (x1: 540, y1: 298.114x2: 540, y2: 298.114)
 Creating marker line on (x1: 0, y1: 0x2: 0, y2: 0)
 Creating marker line on (x1: 0, y1: 0x2: 0, y2: 0)
 Creating marker line on (x1: 0, y1: 0x2: 0, y2: 0)
 Creating marker line on (x1: 0, y1: 0x2: 0, y2: 0)
-Creating marker line on (x1: 860, y1: 269x2: 860, y2: 269)
-Creating marker line on (x1: 900, y1: 190.246x2: 900, y2: 190.246)
+Creating marker line on (x1: 0, y1: 0x2: 0, y2: 0)
+Creating marker line on (x1: 0, y1: 0x2: 0, y2: 0)
+Creating marker line on (x1: 0, y1: 0x2: 0, y2: 0)
+Creating marker line on (x1: 860, y1: 259x2: 860, y2: 259)
+Creating marker line on (x1: 900, y1: 184.906x2: 900, y2: 184.906)
 
 generateMarkers ending...
 

@@ -20,7 +20,7 @@ $c = $dbh->exec("set names utf8");
             <div>
                 <div class='logo-box'>
                     <img class='logo' src='gfx/logo.png' alt='Logo'>
-                    <script src='https://kit.fontawesome.com/fadd1db071.js' crossorigin='anonymous'></script>
+                    <!-- <script src='https://kit.fontawesome.com/fadd1db071.js' crossorigin='anonymous'></script> -->
                      <?php
                         if(!isset($_SESSION['userID'])) {
                             echo "
@@ -47,10 +47,10 @@ $c = $dbh->exec("set names utf8");
                             $stmt->bindParam(':id', $_SESSION['userID'], PDO::PARAM_INT);
                             $stmt->execute();
                             $result = $stmt->fetchAll(PDO::FETCH_NUM);
-                            $row = $result[0];
+                            $graphNo = $result[0][0];
                             echo "<script>
                                 document.addEventListener('DOMContentLoaded', () => {
-                                    getData(".$row[0].");
+                                    getData(".$graphNo.");
                                 });
                                 </script>";
                             // echo $row[0];
@@ -138,6 +138,22 @@ $c = $dbh->exec("set names utf8");
                 <button type='button' class='form-button' onclick='addIllness()'>Choroba</button>
                 <button type='button' class='form-button' onclick='addNotDone()'>Brak pomiaru</button>
                 <button type='button' class='form-button' onclick='document.getElementById("addRecordDialog").close()'>Zamknij</button>
+            </form>
+        </div>
+    </dialog>
+    <dialog id='editTemperatureDialog' class='dialog-window'>
+        <div class='form-container'>
+            <form class='dialog-form'>
+                <h2>Edytuj dzień</h2>
+                <label id='dayLabel' for='editTemperatureInput'></label>
+                <input type='number' name='temperature-change' id='editTemperatureInput' class='form-input' min='36' max='37'>
+                <input type='hidden' name='temperature-graphno'id='editTemperatureGraphNo' <?php echo "value='".$graphNo."'"?>>
+                <button type='button' class='form-button' id='editTemperatureSave'>Zapisz temperaturę</button>
+                <button type='button' class='form-button' id='editTemperatureIll'>Choroba</button>
+                <button type='button' class='form-button' id='editTemperatureNoData'>Brak pomiaru</button>
+            </form>
+            <form method='dialog' class='dialog-form'>
+                <button type='button' class='form-button' id='editTemperatureClose'>Zamknij</button>
             </form>
         </div>
     </dialog>
