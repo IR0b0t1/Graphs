@@ -1,11 +1,15 @@
 <?php
 include("cfg.php");
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
+header("Expires: 0");
 header('Content-Type: image/png');
 
 session_start();
 $c=$dbh->exec("set names utf8");
 $data = array();
-$log = fopen("imageDebug.txt", "w");
+$log = fopen('../log/graphlogs-'.date('Y-m-d').'-'.time().'.txt', 'w') or die('Unable to open file!');
 
 // Zmienne
 $width = $_GET['width'];
@@ -13,6 +17,8 @@ $height = $_GET['height'];
 $margin = $_GET['margin'];
 $graphNo = $_GET['graphNo'];
 $userID  = (int)$_SESSION['userID'];
+
+fwrite($log, "width: $width\nheight: $height\nmargin: $margin\ngraphNo: $graphNo\nuserID: $userID\n");
 
 $sql = "SELECT ID FROM Graphs
         WHERE UserID = :userID AND GraphNo = :graphNo";
@@ -24,6 +30,8 @@ $stmt->execute();
 $serverData = $stmt->fetchAll(PDO::FETCH_NUM);
 $graphID = $serverData[0][0];
 
+fwrite($log, "graphID: $graphID\n");
+
 $sql = "SELECT COUNT(ID) FROM temperature
         WHERE GraphID = :graphID";
 
@@ -33,6 +41,8 @@ $stmt->execute();
 $serverData = $stmt->fetchAll(PDO::FETCH_NUM);
 $days = $serverData[0][0];
 
+fwrite($log, "days: $days\n");
+
 $minTemp = 36.0;
 $maxTemp = 37.0;
 $temp = 36.0;
@@ -41,7 +51,7 @@ $place = $width-105;
 $lineMarginsHorizontal = ($height - 2 * $margin)/5;
 $lineMarginsVertical = ($width - 2 * $margin)/$days;
 
-fwrite($log, "width: $width,\nheight: $height,\nmargin: $margin,\ndays: $days,\ngraphNo: $graphNo,\ngraphID: $graphID,\nuserID: $userID,\nminTemp: $minTemp,\nmaxTemp: $maxTemp,\ntemp: $temp,\nlineNumber: $lineNumber,\nplace: $place,\nlineMarginsHorizontal: $lineMarginsHorizontal,\nlineMarginsVertical: $lineMarginsVertical\n");
+fwrite($log, "minTemp: $minTemp\nmaxTemp: $maxTemp\ntemp: $temp\nlineNumber: $lineNumber\nplace: $place\nlineMarginsHorizontal: $lineMarginsHorizontal\nlineMarginsVertical: $lineMarginsVertical\n\n");
 
 // Klasa Day do ogarniania poszczególnych dni w bazie danych
 class Day {
@@ -88,7 +98,6 @@ $dataQuery = "
     WHERE Graphs.ID = :id AND Graphs.UserID = :userID
     ORDER BY Temperature.Day ASC
 ";
-fwrite($log, "$dataQuery\n");
 
 $dataStmt = $dbh->prepare($dataQuery);
 $dataStmt->bindParam(':id', $graphID, PDO::PARAM_INT);

@@ -1,5 +1,6 @@
 export const getData = async (graphNo) => {
-    console.log(`Graph id: ${graphNo}`);
+    console.log("getData function called...")
+    console.log(`graphNo: ${graphNo}`);
     const container = document.getElementById('container');
 
     if (!container) {
@@ -15,7 +16,7 @@ export const getData = async (graphNo) => {
 
     console.log('Adding image to container');
     container.innerHTML += `
-        <img src="php/graph.php?width=${width}&height=${height}&margin=100&graphNo=${graphNo}&t=${Math.random()}"
+        <img src="php/graph.php?width=${width}&height=${height}&margin=100&graphNo=${graphNo}&t=${Date.now()}"
              alt="Temperatura"
              usemap="#graphmap">
     `;
@@ -39,5 +40,5 @@ export const updateData = async (graphNo, day, temperature, isIllness, isDone) =
     await fetch(
         `php/postdata.php?day=${day}&temperature=${temperature}&isIllness=${isIllness}&isDone=${isDone}`
     )
-        .then(getData(graphNo));
+    await (getData(graphNo));
 };

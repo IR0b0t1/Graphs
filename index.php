@@ -1,7 +1,10 @@
 <?php
 include('php/cfg.php');
 session_start();
+
 $c = $dbh->exec("set names utf8");
+
+$graphNo = isset($_GET['graphNo']) ? $_GET['graphNo'] : 1;
 ?>
 <!DOCTYPE html>
 <html lang='en'>
@@ -20,12 +23,15 @@ $c = $dbh->exec("set names utf8");
             <div>
                 <div class='logo-box'>
                     <img class='logo' src='gfx/logo.png' alt='Logo'>
-                    <!-- <script src='https://kit.fontawesome.com/fadd1db071.js' crossorigin='anonymous'></script> -->
+                    <script src='https://kit.fontawesome.com/fadd1db071.js' crossorigin='anonymous'></script>
                      <?php
                         if(!isset($_SESSION['userID'])) {
-                            echo "
-                                <button class='logo-login' onclick='loginPage()'><!--<i class='fa-solid fa-gears'></i>--> Zaloguj się</button>
-                            ";
+                            echo "<button class='logo-login' onclick='loginPage()'><i class='fa-solid fa-gears'></i> Zaloguj się</button>";
+                            echo "<script>
+                                document.addEventListener('DOMContentLoaded', () => {
+                                    loginPage();
+                                });
+                                </script>";
                         } else {
                             $query = 'SELECT login FROM users WHERE ID = :id';
                             $stmt = $dbh->prepare($query);
@@ -38,21 +44,23 @@ $c = $dbh->exec("set names utf8");
 
                             echo "
                             <form action='php/signout.php'>
-                                <button class='logo-login'><!--<i class='fa-solid fa-gears'></i>--> {$login}</button>
+                                <button class='logo-login'><i class='fa-solid fa-gears'></i> {$login}</button>
                             </form>
                             ";
 
-                            $query = 'SELECT graphNo FROM graphs WHERE UserID = :id LIMIT 1';
-                            $stmt = $dbh->prepare($query);
-                            $stmt->bindParam(':id', $_SESSION['userID'], PDO::PARAM_INT);
-                            $stmt->execute();
-                            $result = $stmt->fetchAll(PDO::FETCH_NUM);
-                            $graphNo = $result[0][0];
                             echo "<script>
                                 document.addEventListener('DOMContentLoaded', () => {
                                     getData(".$graphNo.");
                                 });
                                 </script>";
+
+                            $query = "SELECT MAX(graphNo) FROM Graphs WHERE UserID = :userID";
+                            $stmt = $dbh->prepare($query);
+                            $stmt->execute([
+                                ':userID' => $_SESSION['userID']
+                            ]);
+                            $result = $stmt->fetchAll(PDO::FETCH_NUM);
+                            $maxGraphNo = $result[0][0];
                         }
                      ?>
                     
@@ -105,11 +113,15 @@ $c = $dbh->exec("set names utf8");
                 ?> >
                     <div style='display: flex; justify-content: space-around; margin: 10px;'>
                         <button class='add-button' onclick='newRecordDialog()'>Dodaj pomiar</button>
+                        <button class='add-button' onclick='deleteRecordDialog()'>Usuń pomiar</button>
                         <div class='graph-nav'>
-                            <button class='graph-nav-button' onclick='previousGraph(<?php echo $graphNo;?>)'><</button>
-                            <span class='graph-nav-text' id='graph-nav-text'>Wykres <?php echo $graphNo;?></span>
-                            <button class='graph-nav-button' onclick='nextGraph(<?php echo $graphNo;?>)'>></button>
+                            <a class='graph-nav-button' href='<?php echo "index.php?graphNo=1";?>'>&lt;&lt;</a>
+                            <a class='graph-nav-button' href='<?php echo "index.php?graphNo=".$graphNo-1;?>'>&lt;</a>
+                            <span class='graph-nav-text' id='graph-nav-text'><?php echo "Wykres nr. $graphNo o nazwie ";?></span>
+                            <a class='graph-nav-button' href='<?php echo "index.php?graphNo=".$graphNo+1;?>'>&gt;</a>
+                            <a class='graph-nav-button' href='<?php echo "index.php?graphNo=".$graphNo+1;?>'>&gt;&gt;</a>
                         </div>
+                        <button class='add-button' onclick='deleteGraph(<?php echo $graphNo;?>)'>Usuń wykres</button>
                         <button class='add-button' onclick='newGraphDialog()'>Dodaj nowy wykres</button>
                     </div>
                     <?php 

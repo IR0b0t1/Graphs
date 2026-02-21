@@ -17,7 +17,7 @@ export const addRecord = async (graphNo) => {
     `isDone: ${isDone}`]);
     await fetch(`php/addrecord.php?graphNo=${graphNo}&temperature=${temperature}&isIll=${isIll}&isDone=${isDone}`)
         .then(dialog.close())
-        .then(getData(graphNo))
+        .then(() => getData(graphNo))
 }
 
 export const addNotDone = async (graphNo) => {
@@ -32,7 +32,7 @@ export const addNotDone = async (graphNo) => {
     `isDone: ${isDone}`]);
     await fetch(`php/addrecord.php?graphNo=${graphNo}&temperature=${temperature}&isIll=${isIll}&isDone=${isDone}`)
         .then(dialog.close())
-        .then(getData(graphNo))
+        .then(() => getData(graphNo))
 }
 
 export const addIllness = async (graphNo) => {
@@ -47,5 +47,5 @@ export const addIllness = async (graphNo) => {
     `isDone: ${isDone}`]);
     await fetch(`php/addrecord.php?graphNo=${graphNo}&temperature=${temperature}&isIll=${isIll}&isDone=${isDone}`)
         .then(dialog.close())
-        .then(getData(graphNo))
+        .then(() => getData(graphNo))
 }

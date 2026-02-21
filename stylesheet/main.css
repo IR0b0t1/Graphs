@@ -250,4 +250,10 @@ footer {
     background: #e0e0e0;
     border: 1px solid #d0d0d0;
     color: #343434;
+    text-decoration: none;
+    text-align: center;
+}
+
+.graph-nav-button:hover {
+    background-color: #dadada;
 }
