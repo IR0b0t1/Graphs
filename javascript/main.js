@@ -12,15 +12,3 @@ window.addNotDone = addNotDone;
 window.newRecordDialog = newRecordDialog;
 window.newGraphDialog = newGraphDialog;
 window.getData = getData;
-
-document.addEventListener('DOMContentLoaded', () => {
-    const container = document.getElementById('container');
-
-    if (!container) {
-        console.log('login page');
-        loginPage();
-    } else {
-        console.log('graph page');
-        getData(1);
-    }
-});
