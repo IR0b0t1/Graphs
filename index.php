@@ -27,6 +27,11 @@ $graphNo = isset($_GET['graphNo']) ? $_GET['graphNo'] : 1;
                      <?php
                         if(!isset($_SESSION['userID'])) {
                             echo "<button class='logo-login' onclick='loginPage()'><i class='fa-solid fa-gears'></i> Zaloguj się</button>";
+                            echo "<script>
+                                document.addEventListener('DOMContentLoaded', () => {
+                                    loginPage();
+                                });
+                                </script>";
                         } else {
                             $query = 'SELECT login FROM users WHERE ID = :id';
                             $stmt = $dbh->prepare($query);
@@ -116,7 +121,7 @@ $graphNo = isset($_GET['graphNo']) ? $_GET['graphNo'] : 1;
                             <a class='graph-nav-button' href='<?php echo "index.php?graphNo=".$graphNo+1;?>'>&gt;</a>
                             <a class='graph-nav-button' href='<?php echo "index.php?graphNo=".$graphNo+1;?>'>&gt;&gt;</a>
                         </div>
-                        <button class='add-button' onclick='deleteGraphDialog()'>Usuń wykres wykres</button>
+                        <button class='add-button' onclick='deleteGraph(<?php echo $graphNo;?>)'>Usuń wykres</button>
                         <button class='add-button' onclick='newGraphDialog()'>Dodaj nowy wykres</button>
                     </div>
                     <?php 
