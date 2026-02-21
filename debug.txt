@@ -36,3 +36,6 @@ User logged successfully: admin@gmail.com
 User has 1 graphs
 Session data - user ID: 1, graphs amount: 1
 User logged successfully: admin@gmail.com
+User has 6 graphs
+Session data - user ID: 1, graphs amount: 6
+User logged successfully: admin@gmail.com
