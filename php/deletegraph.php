@@ -39,5 +39,4 @@
     fwrite($log, "deletegraph closes");
 
     fclose($log);
-    header("Location: ../index.php?graphNo=".$graphNo-1);
 ?>
