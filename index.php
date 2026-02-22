@@ -113,7 +113,7 @@ $graphNo = isset($_GET['graphNo']) ? $_GET['graphNo'] : 1;
                 ?> >
                     <div style='display: flex; justify-content: space-around; margin: 10px;'>
                         <button class='add-button' onclick='newRecordDialog()'>Dodaj pomiar</button>
-                        <button class='add-button' onclick='deleteRecordDialog()'>Usuń pomiar</button>
+                        <button class='add-button' onclick='deleteLastRecord()'>Usuń ostatni pomiar</button>
                         <div class='graph-nav'>
                             <a class='graph-nav-button' href='<?php echo "index.php?graphNo=1";?>'>&lt;&lt;</a>
                             <a class='graph-nav-button' href='<?php echo "index.php?graphNo=".$graphNo-1;?>'>&lt;</a>
@@ -159,9 +159,10 @@ $graphNo = isset($_GET['graphNo']) ? $_GET['graphNo'] : 1;
                 <label id='dayLabel' for='editTemperatureInput'></label>
                 <input type='number' name='temperature-change' id='editTemperatureInput' class='form-input' min='36' max='37'>
                 <input type='hidden' name='temperature-graphno'id='editTemperatureGraphNo' <?php echo "value='".$graphNo."'";?>>
-                <button type='button' class='form-button' id='editTemperatureSave'>Zapisz temperaturę</button>
+                <button type='button' class='form-button' id='editTemperatureSave'>Zapisz zmiany</button>
                 <button type='button' class='form-button' id='editTemperatureIll'>Choroba</button>
                 <button type='button' class='form-button' id='editTemperatureNoData'>Brak pomiaru</button>
+                <button type='button' class='form-button' id='editTemperatureDelete'>Usuń dzień</button>
             </form>
             <form method='dialog' class='dialog-form'>
                 <button type='submit' class='form-button' id='editTemperatureClose'>Zamknij</button>
