@@ -4,6 +4,7 @@ import { addRecord, newRecordDialog, addIllness, addNotDone } from './graphAddRe
 import { newGraphDialog } from './addNewGraph.js';
 import { deleteGraph } from './graphDelete.js';
 import { deleteRecord, deleteLastRecord } from './graphDeleteRecord.js';
+import { exportGraphToPDF } from './graphExportToPDF.js';
 
 window.loginPage = loginPage;
 window.registerPage = registerPage;
@@ -17,3 +18,4 @@ window.getData = getData;
 window.deleteGraph = deleteGraph;
 window.deleteRecord = deleteRecord;
 window.deleteLastRecord = deleteLastRecord;
+window.exportGraphToPDF = exportGraphToPDF;

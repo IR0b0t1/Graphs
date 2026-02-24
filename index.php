@@ -152,6 +152,10 @@ $graphNo = isset($_GET['graphNo']) ? $_GET['graphNo'] : 1;
                         <button class='add-button' onclick='deleteGraph(<?php echo $graphNo;?>)'>Usuń wykres</button>
                         <button class='add-button' onclick='newGraphDialog()'>Dodaj nowy wykres</button>
                     </div>
+                    <div>
+                        <button class='add-button' onclick='exportGraphToPdf(<?php echo $graphNo?>)'>Wyeksportuj do PDF</button>
+                    </div>
+
                     <?php 
                     if(isset($_SESSION['userID'])) {
                         echo "
