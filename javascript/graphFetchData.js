@@ -37,8 +37,9 @@ export const getData = async (graphNo) => {
 };
 
 export const updateData = async (graphNo, day, temperature, isIllness, isDone) => {
+    console.log(temperature);
     await fetch(
-        `php/postdata.php?day=${day}&temperature=${temperature}&isIllness=${isIllness}&isDone=${isDone}`
+        `php/postdata.php?graphNo=${graphNo}&day=${day}&temperature=${temperature}&isIllness=${isIllness}&isDone=${isDone}`
     )
-    await (getData(graphNo));
+        .then(() => { getData(graphNo) });
 };
