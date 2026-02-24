@@ -29,5 +29,14 @@
 
     fwrite($log, "Deleted record with day = $day and GraphID = $graphID from 'temperature' table");
 
+    $sql = "UPDATE temperature SET Day=Day-1 WHERE GraphID = :graphID AND Day > :day";
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute([
+        ':graphID' => $graphID,
+        ':day' => $day
+    ]);
+
+    fwrite($log, "Updated records with day > $day and GraphID = $graphID from 'temperature' table");
+
     fclose($log);
 ?>
