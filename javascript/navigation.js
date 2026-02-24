@@ -1,4 +1,5 @@
 import { getData, updateData } from './graphFetchData.js';
+import { deleteRecord } from './graphDeleteRecord.js';
 
 export const loginPage = () => {
     console.log('loginPage changed');
@@ -27,6 +28,7 @@ const dayLabel = document.getElementById('dayLabel');
 const saveButton = document.getElementById('editTemperatureSave');
 const illButton = document.getElementById('editTemperatureIll');
 const noDataButton = document.getElementById('editTemperatureNoData');
+const deleteDayButton = document.getElementById('editTemperatureDelete');
 const temperatureInput = document.getElementById('editTemperatureInput');
 const graphNo = document.getElementById('editTemperatureGraphNo').value;
 
@@ -57,6 +59,15 @@ noDataButton.addEventListener('click', async (e) => {
     dialog.close();
     getData(graphNo);
 });
+
+deleteDayButton.addEventListener('click', async (e) => {
+    console.log("deleteDayButton eventListener called...");
+    console.log(`graphNo = ${graphNo}, day = ${day}`);
+    e.preventDefault();
+    await deleteRecord(day, graphNo);
+    dialog.close();
+    getData(graphNo);
+})
 
 export const nodeClicked = (
     clickedDay,

@@ -140,7 +140,7 @@ $graphNo = isset($_GET['graphNo']) ? $_GET['graphNo'] : 1;
                 ?> >
                     <div style='display: flex; justify-content: space-around; margin: 10px;'>
                         <button class='add-button' onclick='newRecordDialog()'>Dodaj pomiar</button>
-                        <button class='add-button' onclick='deleteRecord(<?php echo "$maxDay, $graphID"?>)'>Usuń ostatni pomiar</button>
+                        <button class='add-button' onclick='deleteLastRecord(<?php echo "$graphID"?>)'>Usuń ostatni pomiar</button>
                         <div class='graph-nav'>
                             <a class='graph-nav-button' href='<?php echo "index.php?graphNo=1";?>'>&lt;&lt;</a>
                             <a class='graph-nav-button'href='<?php echo ($graphNo > 1) ? "index.php?graphNo=".($graphNo-1) : "#";?>'>&lt;</a>
