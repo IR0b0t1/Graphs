@@ -61,6 +61,33 @@ $graphNo = isset($_GET['graphNo']) ? $_GET['graphNo'] : 1;
                             ]);
                             $result = $stmt->fetchAll(PDO::FETCH_NUM);
                             $maxGraphNo = $result[0][0];
+
+                            $graphNo = isset($_GET['graphNo']) ? (int)$_GET['graphNo'] : 1;
+
+                            if ($graphNo < 1) {
+                                $graphNo = 1;
+                            }
+
+                            if ($graphNo > $maxGraphNo) {
+                                $graphNo = $maxGraphNo;
+                            }
+
+                            $query = "SELECT ID FROM Graphs WHERE GraphNo = :graphNo AND UserID = :userID";
+                            $stmt = $dbh->prepare($query);
+                            $stmt->execute([
+                                ':graphNo'  => $graphNo,
+                                ':userID' => $_SESSION['userID']
+                            ]);
+                            $result = $stmt->fetchAll(PDO::FETCH_NUM);
+                            $graphID = $result[0][0];
+
+                            $query = "SELECT MAX(Day) FROM temperature WHERE GraphID = :graphID";
+                            $stmt = $dbh->prepare($query);
+                            $stmt->execute([
+                                ':graphID' => $graphID
+                            ]);
+                            $result = $stmt->fetchAll(PDO::FETCH_NUM);
+                            $maxDay = $result[0][0];
                         }
                      ?>
                     
@@ -113,13 +140,13 @@ $graphNo = isset($_GET['graphNo']) ? $_GET['graphNo'] : 1;
                 ?> >
                     <div style='display: flex; justify-content: space-around; margin: 10px;'>
                         <button class='add-button' onclick='newRecordDialog()'>Dodaj pomiar</button>
-                        <button class='add-button' onclick='deleteLastRecord()'>Usuń ostatni pomiar</button>
+                        <button class='add-button' onclick='deleteRecord(<?php echo "$maxDay, $graphID"?>)'>Usuń ostatni pomiar</button>
                         <div class='graph-nav'>
                             <a class='graph-nav-button' href='<?php echo "index.php?graphNo=1";?>'>&lt;&lt;</a>
-                            <a class='graph-nav-button' href='<?php echo "index.php?graphNo=".$graphNo-1;?>'>&lt;</a>
+                            <a class='graph-nav-button'href='<?php echo ($graphNo > 1) ? "index.php?graphNo=".($graphNo-1) : "#";?>'>&lt;</a>
                             <span class='graph-nav-text' id='graph-nav-text'><?php echo "Wykres nr. $graphNo o nazwie ";?></span>
-                            <a class='graph-nav-button' href='<?php echo "index.php?graphNo=".$graphNo+1;?>'>&gt;</a>
-                            <a class='graph-nav-button' href='<?php echo "index.php?graphNo=".$graphNo+1;?>'>&gt;&gt;</a>
+                            <a class='graph-nav-button' href='<?php echo ($graphNo < $maxGraphNo) ? "index.php?graphNo=".($graphNo+1) : "#";?>'>&gt;</a>
+                            <a class='graph-nav-button' href='<?php echo "index.php?graphNo=".$maxGraphNo;?>'>&gt;&gt;</a>
                         </div>
                         <button class='add-button' onclick='deleteGraph(<?php echo $graphNo;?>)'>Usuń wykres</button>
                         <button class='add-button' onclick='newGraphDialog()'>Dodaj nowy wykres</button>
