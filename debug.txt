@@ -1,0 +1,10 @@
+
+User has 3 graphs
+Session data - user ID: 1, graphs amount: 3
+User logged successfully: admin@gmail.com
+User has 3 graphs
+Session data - user ID: 1, graphs amount: 3
+User logged successfully: admin@gmail.com
+User has 3 graphs
+Session data - user ID: 1, graphs amount: 3
+User logged successfully: admin@gmail.com
