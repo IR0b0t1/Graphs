@@ -22,6 +22,7 @@ $graphNo = isset($_GET['graphNo']) ? $_GET['graphNo'] : 1;
         <nav>
             <div>
                 <div class='logo-box'>
+                    <p class='extra-logo'>{'Tu-będzie-ekstra-logo'}</p>
                     <img class='logo' src='gfx/logo.png' alt='Logo'>
                     <script src='https://kit.fontawesome.com/fadd1db071.js' crossorigin='anonymous'></script>
                      <?php
@@ -140,6 +141,7 @@ $graphNo = isset($_GET['graphNo']) ? $_GET['graphNo'] : 1;
                     } 
                 ?> >
                     <div style='display: flex; justify-content: space-around; margin: 10px;'>
+                        <button class='add-button' onclick='epilepsyApproved()'>Tryb epilepsji</button>
                         <button class='add-button' onclick='newRecordDialog()'>Dodaj pomiar</button>
                         <button class='add-button' onclick='deleteLastRecord(<?php echo "$graphID"?>)'>Usuń ostatni pomiar</button>
                         <div class='graph-nav'>
@@ -151,8 +153,6 @@ $graphNo = isset($_GET['graphNo']) ? $_GET['graphNo'] : 1;
                         </div>
                         <button class='add-button' onclick='deleteGraph(<?php echo $graphNo;?>)'>Usuń wykres</button>
                         <button class='add-button' onclick='newGraphDialog()'>Dodaj nowy wykres</button>
-                    </div>
-                    <div>
                         <button class='add-button' onclick='exportGraphToPdf(<?php echo $graphNo?>)'>Wyeksportuj do PDF</button>
                     </div>
 

@@ -35,6 +35,12 @@
         ':graphID' => $graphID
     ]);
 
+    $sql = "UPDATE graphs SET GraphNo=GraphNo-1 WHERE GraphNo > :graphNo";
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute([
+        ':graphNo' => $graphNo
+    ]);
+
     fwrite($log, "A record from table 'Graphs' with ID = $graphID was deleted\n");
     fwrite($log, "deletegraph closes");
 
