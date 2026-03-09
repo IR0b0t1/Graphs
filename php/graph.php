@@ -232,7 +232,7 @@ for ($y = $width-$margin; $y >= $margin; $y-=$lineMarginsVertical) {
 }
 fwrite($log, "Vertical lines generation ending...\n");
 
-// No idea
+// This part does numbers for days at the bottom
 fwrite($log, "'for' loop starting...\n");
 for ($z = $days; $z>=1; $z--){
     imagestring($im, 5, $place, $height-90, $z, $bk);
@@ -246,7 +246,7 @@ fwrite($log, "addMarkerLines running...\n\n");
 addMarkerLines($im, $data);
 fwrite($log, "generateMarkers ending...\n\n");
 
-// To robi śmieszne kreseczki
+// This - funny
 // for ($y = 0; $y <= $width; $y+=1) {
 //     imagesetstyle($im, $grayLine);
 //     imageline($im, $y, 0, 1000, $y, IMG_COLOR_STYLED);
