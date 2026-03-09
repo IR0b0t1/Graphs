@@ -19,3 +19,6 @@ User registered successfully (pending verification): flitewka2@gmail.com
 User has 0 graphs
 Session data - user ID: 3, graphs amount: 0
 User logged successfully: flitewka2@gmail.com
+User has 1 graphs
+Session data - user ID: 3, graphs amount: 1
+User logged successfully: flitewka2@gmail.com

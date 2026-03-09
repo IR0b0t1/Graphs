@@ -46,14 +46,14 @@ try {
     $mailer = new PHPMailer(true);
 
     $mailer->isSMTP();
-    $mailer->Host       = 'smtp.your-mail-host.com';
+    $mailer->Host       = 'smtp.gmail.com';
     $mailer->SMTPAuth   = true;
-    $mailer->Username   = 'your-smtp-username';
-    $mailer->Password   = 'your-smtp-password';
+    $mailer->Username   = 'flitewka@gmail.com';
+    $mailer->Password   = 'diqo adta rphp fovf';
     $mailer->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mailer->Port       = 587;
 
-    $mailer->setFrom('no-reply@your-domain.com', 'Graphs');
+    $mailer->setFrom('flitewka@gmail.com', 'Graphs');
     $mailer->addAddress($email);
 
     $resetLink = sprintf(
