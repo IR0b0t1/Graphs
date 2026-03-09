@@ -131,8 +131,8 @@ $graphNo = isset($_GET['graphNo']) ? $_GET['graphNo'] : 1;
                     <input type='email' name='emaillogin' placeholder='Email' required autocomplete='off'>
                     <input type='password' name='passwordlogin' placeholder='Hasło' required autocomplete='off'>
                     <div class='button-box'>
-                        <button class='login-button' type='submit' onclick='loginUser()'>Zaloguj</button>
-                        <a href='#' class='password-forgot'>Zapomniałem hasła</a>
+                        <button class='login-button' type='submit'>Zaloguj</button>
+                        <a href='#' class='password-forgot' onclick='requestPasswordReset(event)'>Zapomniałem hasła</a>
                     </div>
                 </form>
                 <div class='datagrid'<?php
@@ -213,6 +213,22 @@ $graphNo = isset($_GET['graphNo']) ? $_GET['graphNo'] : 1;
             </form>
             <form method='dialog' class='dialog-form'>
                 <button type='submit' class='form-button' id='addGraphClose'>Zamknij</button>
+            </form>
+        </div>
+    </dialog>
+    <dialog id='resetPasswordDialog' class='dialog-window'>
+        <div class='form-container'>
+            <form class='dialog-form' id='resetPasswordForm'>
+                <h2>Reset hasła</h2>
+                <input type='hidden' id='resetToken' name='resetToken' value='<?php echo isset($_GET['resetToken']) ? htmlspecialchars($_GET['resetToken'], ENT_QUOTES) : ''; ?>'>
+                <label for='newPassword'>Nowe hasło</label>
+                <input type='password' id='newPassword' class='form-input' required autocomplete='off'>
+                <label for='confirmNewPassword'>Powtórz nowe hasło</label>
+                <input type='password' id='confirmNewPassword' class='form-input' required autocomplete='off'>
+                <button type='button' class='form-button' id='resetPasswordSave'>Zmień hasło</button>
+            </form>
+            <form method='dialog' class='dialog-form'>
+                <button type='submit' class='form-button' id='resetPasswordClose'>Zamknij</button>
             </form>
         </div>
     </dialog>
