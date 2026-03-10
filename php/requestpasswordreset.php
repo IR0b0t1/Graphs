@@ -46,6 +46,8 @@ try {
     $mailer = new PHPMailer(true);
 
     $mailer->isSMTP();
+    $mailer->CharSet  = 'UTF-8';
+    $mailer->Encoding = 'base64';
     $mailer->Host       = 'smtp.gmail.com';
     $mailer->SMTPAuth   = true;
     $mailer->Username   = 'flitewka@gmail.com';

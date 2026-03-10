@@ -5,7 +5,6 @@ function generateGraphTempImage($dbh, $userId, $graphNo, $width, $height, $margi
 
     $data = [];
 
-    // Pobierz ID wykresu
     $sql = "SELECT ID FROM Graphs
             WHERE UserID = :userID AND GraphNo = :graphNo";
 

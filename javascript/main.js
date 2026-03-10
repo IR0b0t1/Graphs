@@ -20,7 +20,7 @@ async function requestPasswordReset(event) {
     }
 
     try {
-        const response = await fetch('php/request_password_reset.php', {
+        const response = await fetch('php/requestpasswordreset.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -62,7 +62,7 @@ function initPasswordResetDialog() {
         }
 
         try {
-            const response = await fetch('php/reset_password.php', {
+            const response = await fetch('php/resetpassword.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'

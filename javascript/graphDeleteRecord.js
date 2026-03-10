@@ -9,6 +9,6 @@ export const deleteRecord = async (day, graphNo) => {
 export const deleteLastRecord = async (graphNo) => {
     console.log("deleteLastRecord function called");
     console.log(`graphID: ${graphNo}`);
-    fetch(`php/deletelastrecord.php?graphID=${graphNo}`)
+    fetch(`php/deletelastrecord.php?graphNo=${graphNo}`)
         .then(() => getData(graphNo));
 }

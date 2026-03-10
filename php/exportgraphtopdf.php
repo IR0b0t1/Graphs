@@ -2,7 +2,7 @@
 	include('cfg.php');
 	session_start();
 	require_once __DIR__ . '/../vendor/autoload.php';
-	require_once __DIR__ . '/graph_image_temp.php';
+	require_once __DIR__ . '/graphimagetemp.php';
 
 	if (!isset($_SESSION['userID'])) {
 		http_response_code(403);

@@ -50,10 +50,56 @@ $stmt->execute([
     ':token' => $verificationToken
 ]);
 
+$newUserId = (int)$dbh->lastInsertId();
+
+if ($newUserId > 0) {
+    $defaultDaysAmount = 20;
+    $defaultGraphNo = 1;
+    $defaultGraphName = 'First graph';
+
+    $sql = "INSERT INTO Graphs (`Name`, `UserID`, `GraphNo`) VALUES (:name, :userID, :graphNo)";
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute([
+        ':name' => $defaultGraphName,
+        ':userID' => $newUserId,
+        ':graphNo' => $defaultGraphNo
+    ]);
+
+    $sql = "SELECT ID FROM Graphs WHERE UserID = :userID AND GraphNo = :graphNo";
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute([
+        ':userID' => $newUserId,
+        ':graphNo' => $defaultGraphNo
+    ]);
+    $serverData = $stmt->fetchAll(PDO::FETCH_NUM);
+
+    if (!empty($serverData)) {
+        $graphID = $serverData[0][0];
+
+        for ($i = 1; $i <= $defaultDaysAmount; $i++) {
+            $sql = "INSERT INTO temperature (`GraphID`, `Day`, `Temperature`, `isDone`, `isIllness`) 
+                    VALUES (:graphID, :dayNo, 36, 0, 0)";
+            $stmt = $dbh->prepare($sql);
+            $stmt->execute([
+                ':graphID' => $graphID,
+                ':dayNo' => $i
+            ]);
+        }
+
+        fwrite($log, "\nCreated default graph with {$defaultDaysAmount} days for new user ID: {$newUserId}");
+    } else {
+        fwrite($log, "\nFailed to fetch default graph ID for new user ID: {$newUserId}");
+    }
+} else {
+    fwrite($log, "\nFailed to get new user ID after insert");
+}
+
 try {
     $mailer = new PHPMailer(true);
 
     $mailer->isSMTP();
+    $mailer->CharSet  = 'UTF-8';
+    $mailer->Encoding = 'base64';
     $mailer->Host       = 'smtp.gmail.com';
     $mailer->SMTPAuth   = true;
     $mailer->Username   = 'flitewka@gmail.com';

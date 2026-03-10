@@ -22,7 +22,7 @@ $graphNo = isset($_GET['graphNo']) ? $_GET['graphNo'] : 1;
         <nav>
             <div>
                 <div class='logo-box'>
-                    <p class='extra-logo'>{'Tu-będzie-ekstra-logo'}</p>
+                    <p class='extra-logo'><i>{'Tu-będzie-ekstra-logo'}</i></p>
                     <img class='logo' src='gfx/logo.png' alt='Logo'>
                     <script src='https://kit.fontawesome.com/fadd1db071.js' crossorigin='anonymous'></script>
                      <?php
@@ -45,7 +45,7 @@ $graphNo = isset($_GET['graphNo']) ? $_GET['graphNo'] : 1;
 
                             echo "
                             <form action='php/signout.php'>
-                                <button class='logo-login'><i class='fa-solid fa-gears'></i> {$login}</button>
+                                <button class='logo-login'><i class='fa-solid fa-arrow-right-from-bracket'></i> {$login}</button>
                             </form>
                             ";
 
@@ -141,9 +141,8 @@ $graphNo = isset($_GET['graphNo']) ? $_GET['graphNo'] : 1;
                     } 
                 ?> >
                     <div style='display: flex; justify-content: space-around; margin: 10px;'>
-                        <button class='add-button' onclick='epilepsyApproved()'>Tryb epilepsji</button>
                         <button class='add-button' onclick='newRecordDialog()'>Dodaj pomiar</button>
-                        <button class='add-button' onclick='deleteLastRecord(<?php echo "$graphID"?>)'>Usuń ostatni pomiar</button>
+                        <button class='add-button' onclick='deleteLastRecord(<?php echo "$graphNo"?>)'>Usuń ostatni pomiar</button>
                         <div class='graph-nav'>
                             <a class='graph-nav-button' href='<?php echo "index.php?graphNo=1";?>'>&lt;&lt;</a>
                             <a class='graph-nav-button'href='<?php echo ($graphNo > 1) ? "index.php?graphNo=".($graphNo-1) : "#";?>'>&lt;</a>
