@@ -108,6 +108,7 @@ window.deleteGraph = deleteGraph;
 window.deleteRecord = deleteRecord;
 window.deleteLastRecord = deleteLastRecord;
 window.exportGraphToPDF = exportGraphToPDF;
+window.exportGraphToPdf = exportGraphToPDF;
 window.requestPasswordReset = requestPasswordReset;
 
 initPasswordResetDialog(); 

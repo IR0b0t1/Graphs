@@ -22,3 +22,22 @@ User logged successfully: flitewka2@gmail.com
 User has 1 graphs
 Session data - user ID: 3, graphs amount: 1
 User logged successfully: flitewka2@gmail.com
+Invalid email or password
+User has 1 graphs
+Session data - user ID: 3, graphs amount: 1
+User logged successfully: flitewka2@gmail.com
+User has 1 graphs
+Session data - user ID: 3, graphs amount: 1
+User logged successfully: flitewka2@gmail.com
+User not verified: admin@gmail.com
+User has 2 graphs
+Session data - user ID: 1, graphs amount: 2
+User logged successfully: admin@gmail.com
+User has 2 graphs
+Session data - user ID: 1, graphs amount: 2
+User logged successfully: admin@gmail.com
+Verification email sent to: flitewka2@gmail.com
+User registered successfully (pending verification): flitewka2@gmail.com
+User has 0 graphs
+Session data - user ID: 4, graphs amount: 0
+User logged successfully: flitewka2@gmail.com
