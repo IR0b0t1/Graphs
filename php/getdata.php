@@ -28,8 +28,7 @@ if(!isset($serverData[0])) {                                            // This 
     echo "No graph with that ID";                                       // I am confused :)
     exit;
 } else {
-    $row = $serverData[0];
-    $graphID = $row[0];
+    $graphID = $serverData[0][0];
 }
 
 $sql = "

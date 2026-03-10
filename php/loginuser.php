@@ -10,7 +10,7 @@ $email = trim($_POST['emaillogin']);
 $password = $_POST['passwordlogin'];
 $log = fopen("../debug.txt", "a");
 
-$sql = "SELECT ID, Password FROM Users WHERE Login = :email LIMIT 1";
+$sql = "SELECT ID, Password, IsVerified FROM Users WHERE Login = :email LIMIT 1";
 $stmt = $dbh->prepare($sql);
 $stmt->bindParam(':email', $email, PDO::PARAM_STR);
 $stmt->execute();
@@ -20,6 +20,11 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 if (!$user || !password_verify($password, $user['Password'])) {
     fwrite($log, "\nInvalid email or password");
     die('Invalid email or password');
+}
+
+if ((int)$user['IsVerified'] !== 1) {
+    fwrite($log, "\nUser not verified: $email");
+    die('Account not verified. Please check your email for the confirmation link.');
 }
 
 $_SESSION['userID'] = (int)$user['ID'];
