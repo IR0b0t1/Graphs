@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 09, 2026 at 05:48 PM
+-- Generation Time: Mar 10, 2026 at 09:34 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -41,7 +41,8 @@ CREATE TABLE `graphs` (
 INSERT INTO `graphs` (`ID`, `Name`, `UserID`, `GraphNo`) VALUES
 (1, 'AdminGraph', 1, 1),
 (5, 'TestGraph', 1, 2),
-(14, 'Boner', 2, 1);
+(14, 'Boner', 2, 1),
+(26, 'First graph', 5, 1);
 
 -- --------------------------------------------------------
 
@@ -83,9 +84,13 @@ INSERT INTO `temperature` (`ID`, `GraphID`, `Day`, `Temperature`, `isDone`, `isI
 (19, 1, 18, 36.7, 1, 1),
 (20, 1, 19, 36.5, 1, 1),
 (182, 1, 20, 36, 0, 1),
-(209, 1, 22, 36.6, 1, 0),
-(208, 1, 21, 36.5, 1, 0),
-(140, 5, 11, 36.7, 1, 1),
+(366, 26, 18, 36, 0, 0),
+(365, 26, 17, 36, 0, 0),
+(364, 26, 16, 36, 0, 0),
+(363, 26, 15, 36, 0, 0),
+(362, 26, 14, 36, 0, 0),
+(369, 1, 21, 36.8, 1, 0),
+(140, 5, 10, 36.7, 1, 1),
 (139, 14, 15, 36, 0, 0),
 (138, 14, 14, 36.5, 1, 0),
 (137, 14, 13, 36.4, 1, 0),
@@ -97,9 +102,8 @@ INSERT INTO `temperature` (`ID`, `GraphID`, `Day`, `Temperature`, `isDone`, `isI
 (48, 5, 5, 36, 1, 1),
 (49, 5, 6, 36, 1, 1),
 (50, 5, 7, 36.4, 1, 0),
-(51, 5, 8, 36.8, 1, 0),
-(52, 5, 9, 36.5, 1, 0),
-(53, 5, 10, 36.3, 1, 0),
+(52, 5, 8, 36.5, 1, 0),
+(53, 5, 9, 36.3, 1, 0),
 (135, 14, 11, 36.6, 1, 0),
 (134, 14, 10, 36.7, 1, 0),
 (133, 14, 9, 36.9, 1, 0),
@@ -110,8 +114,21 @@ INSERT INTO `temperature` (`ID`, `GraphID`, `Day`, `Temperature`, `isDone`, `isI
 (128, 14, 4, 36.7, 1, 0),
 (127, 14, 3, 36.4, 1, 0),
 (126, 14, 2, 36.5, 1, 0),
-(141, 5, 12, 36, 0, 1),
-(125, 14, 1, 36.7, 1, 0);
+(141, 5, 11, 36, 0, 1),
+(125, 14, 1, 36.7, 1, 0),
+(361, 26, 13, 36, 0, 0),
+(360, 26, 12, 36, 0, 0),
+(359, 26, 11, 36, 0, 0),
+(358, 26, 10, 36, 0, 0),
+(357, 26, 9, 36, 0, 0),
+(356, 26, 8, 36, 0, 0),
+(355, 26, 7, 36, 0, 0),
+(354, 26, 6, 36, 0, 0),
+(353, 26, 5, 36, 0, 0),
+(352, 26, 4, 36, 0, 0),
+(351, 26, 3, 36, 0, 0),
+(350, 26, 2, 36, 0, 0),
+(349, 26, 1, 36, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -122,16 +139,21 @@ INSERT INTO `temperature` (`ID`, `GraphID`, `Day`, `Temperature`, `isDone`, `isI
 CREATE TABLE `users` (
   `ID` int(11) NOT NULL,
   `Login` varchar(255) NOT NULL,
-  `Password` varchar(255) NOT NULL
+  `Password` varchar(255) NOT NULL,
+  `VerificationToken` varchar(255) NOT NULL,
+  `PasswordResetToken` varchar(64) DEFAULT NULL,
+  `PasswordResetExpires` datetime DEFAULT NULL,
+  `IsVerified` tinyint(1) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`ID`, `Login`, `Password`) VALUES
-(1, 'admin@gmail.com', '$2y$10$J1gt4nqCBiWeyojna0Hmues4BgcUSN8eFnnNhZ8UeepjItE3/gHru'),
-(2, 'bboner@egzorcysta.pl', '$2y$10$xHeidVrkyp8h0nO/8U.Wo.Dp/51hMUDTxlLEaFg10QajGfZZ/fx9m');
+INSERT INTO `users` (`ID`, `Login`, `Password`, `VerificationToken`, `PasswordResetToken`, `PasswordResetExpires`, `IsVerified`) VALUES
+(1, 'admin@gmail.com', '$2y$10$J1gt4nqCBiWeyojna0Hmues4BgcUSN8eFnnNhZ8UeepjItE3/gHru', '', '', '0000-00-00 00:00:00', 1),
+(2, 'bboner@egzorcysta.pl', '$2y$10$xHeidVrkyp8h0nO/8U.Wo.Dp/51hMUDTxlLEaFg10QajGfZZ/fx9m', '', '', '0000-00-00 00:00:00', 1),
+(5, 'flitewka2@gmail.com', '$2y$10$ZAlQCRVf7ovv/oB05hIomOE/Cs.djbW4PAY/lfekWJtZ9sK6oEcua', '', '0fbe9ced3b935dec7e32e3980078857428e19d2323be2f611d560a78104532af', '2026-03-10 22:30:31', 1);
 
 --
 -- Indexes for dumped tables
@@ -164,19 +186,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `graphs`
 --
 ALTER TABLE `graphs`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `temperature`
 --
 ALTER TABLE `temperature`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=309;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=414;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
